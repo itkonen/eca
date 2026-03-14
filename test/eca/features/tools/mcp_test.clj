@@ -124,3 +124,30 @@
       (is (= {:mcp-clients {}
               :workspace-folders []
               :other-key "value"} @db*)))))
+
+(deftest server-instructions-test
+  (testing "empty db"
+    (is (= [] (mcp/server-instructions {}))))
+
+  (testing "db with no mcp-clients"
+    (is (= [] (mcp/server-instructions {:some-other-key "value"}))))
+
+  (testing "db with empty mcp-clients"
+    (is (= [] (mcp/server-instructions {:mcp-clients {}}))))
+
+  (testing "servers without instructions are omitted"
+    (is (= []
+           (mcp/server-instructions {:mcp-clients {"server1" {:status :running}}}))))
+
+  (testing "server with instructions is included"
+    (is (= [{:server-name "server1" :instructions "Use tool X for Y"}]
+           (mcp/server-instructions {:mcp-clients {"server1" {:instructions "Use tool X for Y"}}}))))
+
+  (testing "only servers with instructions are returned"
+    (let [result (mcp/server-instructions
+                  {:mcp-clients {"server1" {:instructions "Do A"}
+                                 "server2" {}
+                                 "server3" {:instructions "Do B"}}})]
+      (is (= 2 (count result)))
+      (is (some #(= {:server-name "server1" :instructions "Do A"} %) result))
+      (is (some #(= {:server-name "server3" :instructions "Do B"} %) result)))))

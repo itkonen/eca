@@ -105,6 +105,25 @@
      {}
      all-tools))))
 
+(defn ^:private mcp-instructions-str
+  "Render MCP server instructions (from InitializeResult) as a prompt section.
+   Only included when at least one server provides instructions."
+  [db]
+  (let [entries (f.mcp/server-instructions db)]
+    (when (seq entries)
+      (multi-str
+       "## MCP Server Instructions"
+       ""
+       "<mcpServerInstructions description=\"Instructions provided by MCP servers describing how to use their tools and features.\">"
+       (reduce
+        (fn [s {:keys [server-name instructions]}]
+          (str s (format "<mcpServerInstruction server=\"%s\">%s</mcpServerInstruction>\n"
+                         server-name instructions)))
+        ""
+        entries)
+       "</mcpServerInstructions>"
+       ""))))
+
 (defn build-chat-instructions [refined-contexts rules skills repo-map* agent-name config chat-id all-tools db]
   (let [selmer-ctx (->base-selmer-ctx all-tools chat-id db)]
     (multi-str
@@ -131,6 +150,7 @@
          skills)
         "</skills>"
         ""])
+     (mcp-instructions-str db)
      (when (seq refined-contexts)
        ["## Contexts"
         ""

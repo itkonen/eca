@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Include MCP server instructions (from `InitializeResult`) in the chat system prompt.
+
 ## 0.114.0
 
 - Delete chats older than 7 days on server startup.

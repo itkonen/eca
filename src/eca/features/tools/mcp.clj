@@ -309,11 +309,14 @@
                              (let [client (->client name transport init-timeout workspaces
                                                     {:on-tools-change on-tools-change})
                                    init-result (pmc/get-initialize-result client)
-                                   version (get-in init-result [:serverInfo :version])]
+                                   version (get-in init-result [:serverInfo :version])
+                                   instructions (:instructions init-result)]
                                (swap! db* assoc-in [:mcp-clients name] {:client client
                                                                         :status :starting
                                                                         :needs-reinit?* needs-reinit?*})
                                (swap! db* assoc-in [:mcp-clients name :version] version)
+                               (when instructions
+                                 (swap! db* assoc-in [:mcp-clients name :instructions] instructions))
                                (swap! db* assoc-in [:mcp-clients name :tools] (list-server-tools client))
                                (swap! db* assoc-in [:mcp-clients name :prompts] (list-server-prompts client))
                                (swap! db* assoc-in [:mcp-clients name :resources] (list-server-resources client))
@@ -509,6 +512,18 @@
         (mapcat (fn [[name {:keys [tools version]}]]
                   (map #(assoc % :server {:name name
                                           :version version}) tools)))
+        (:mcp-clients db)))
+
+(defn server-instructions
+  "Returns a seq of {:server-name name :instructions instructions} maps
+   for all running MCP servers that provided instructions in their
+   InitializeResult. Servers without instructions are omitted."
+  [db]
+  (into []
+        (keep (fn [[server-name {:keys [instructions]}]]
+                (when instructions
+                  {:server-name (name server-name)
+                   :instructions instructions})))
         (:mcp-clients db)))
 
 (defn ^:private reinitialize-server!
