@@ -85,8 +85,8 @@
         "properties": {
           "path": {
             "type": "string",
-            "description": "Path to a rule file (relative to workspace root or absolute).",
-            "markdownDescription": "Path to a rule file (relative to workspace root or absolute)."
+            "description": "Path to a rule file or directory (relative to workspace root or absolute). Directories are loaded recursively.",
+            "markdownDescription": "Path to a rule file or directory (relative to workspace root or absolute). Directories are loaded recursively."
           }
         },
         "required": [
@@ -112,8 +112,27 @@
         "properties": {
           "path": {
             "type": "string",
-            "description": "Path to a command prompt markdown file.",
-            "markdownDescription": "Path to a command prompt markdown file."
+            "description": "Path to a command prompt markdown file or directory. Directories load markdown files recursively.",
+            "markdownDescription": "Path to a command prompt markdown file or directory. Directories load markdown files recursively."
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "Skill files or directories to load.",
+      "markdownDescription": "Skill files or directories to load.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to a skill file or directory. Directories load SKILL.md files recursively.",
+            "markdownDescription": "Path to a skill file or directory. Directories load SKILL.md files recursively."
           }
         },
         "required": [
@@ -251,6 +270,12 @@
             "openai/gpt-4.1",
             "github-copilot/gpt-4.1"
           ]
+        },
+        "fullFileMaxLines": {
+          "type": "integer",
+          "description": "Maximum number of lines of the target file to inline as context in the rewrite prompt. When the file exceeds this, a window of this many lines centered on the selection is used instead.",
+          "markdownDescription": "Maximum number of lines of the target file to inline as context in the rewrite prompt. When the file exceeds this, a window of this many lines centered on the selection is used instead.",
+          "default": 2000
         }
       }
     },
@@ -450,6 +475,17 @@
           "items": {
             "type": "string"
           }
+        },
+        "api": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "Restrict variants to the given API type(s). String for exact match, array for any-of. Absent = match all.",
+          "markdownDescription": "Restrict variants to the given API type(s). String for exact match, array for any-of. Absent = match all.",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
@@ -476,8 +512,8 @@
         },
         "url": {
           "type": "string",
-          "description": "Base URL for the provider's API. Supports dynamic strings like ${env:VAR}.",
-          "markdownDescription": "Base URL for the provider's API. Supports dynamic strings like ${env:VAR}.",
+          "description": "Base URL for the provider's API. Supports dynamic strings like ${env:VAR} or ${cmd:command}.",
+          "markdownDescription": "Base URL for the provider's API. Supports dynamic strings like `${env:VAR}` or `${cmd:command}`.",
           "format": "uri"
         },
         "key": {
@@ -485,8 +521,8 @@
             "string",
             "null"
           ],
-          "description": "API key for authentication. Supports dynamic strings like ${env:MY_API_KEY}.",
-          "markdownDescription": "API key for authentication. Supports dynamic strings like ${env:MY_API_KEY}."
+          "description": "API key for authentication. Supports dynamic strings like ${env:MY_API_KEY}, ${netrc:host} or ${cmd:pass show eca/api-key}.",
+          "markdownDescription": "API key for authentication. Supports dynamic strings like `${env:MY_API_KEY}`, `${netrc:host}` or `${cmd:pass show eca/api-key}`."
         },
         "keyRc": {
           "type": "string",
@@ -730,9 +766,23 @@
           ]
         },
         "matcher": {
-          "type": "string",
-          "description": "Regex pattern for matching server__tool-name. Only for *ToolCall hook types.",
-          "markdownDescription": "Regex pattern for matching server__tool-name. Only for *ToolCall hook types."
+          "description": "Matches *ToolCall hooks; unmatched hooks are skipped. String: legacy regex against server__tool-name. Object: tool selector map with optional argsMatchers.",
+          "markdownDescription": "Matches `*ToolCall` hooks; unmatched hooks are skipped. **String**: legacy regex against `server__tool-name`. **Object**: tool selector map with optional `argsMatchers`.",
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Regex pattern for matching server__tool-name.",
+              "markdownDescription": "Regex pattern for matching `server__tool-name`."
+            },
+            {
+              "type": "object",
+              "description": "Tool selector map. Keys follow toolApproval selectors: full tool name (server__tool-name), native ECA tool name, or server name. Empty rule {} matches without argument filtering.",
+              "markdownDescription": "Tool selector map. Keys follow `toolApproval` selectors: full tool name (`server__tool-name`), native ECA tool name, or server name. Empty rule `{}` matches without argument filtering.",
+              "additionalProperties": {
+                "$ref": "#/definitions/hookMatcherEntry"
+              }
+            }
+          ]
         },
         "visible": {
           "type": "boolean",
@@ -975,6 +1025,25 @@
           "type": "object",
           "description": "Map of argument name to list of Java regex patterns to match against.",
           "markdownDescription": "Map of argument name to list of Java regex patterns to match against.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "hookMatcherEntry": {
+      "type": "object",
+      "description": "Hook matcher rule. Use argsMatchers to require argument values to match Java regex patterns.",
+      "markdownDescription": "Hook matcher rule. Use `argsMatchers` to require argument values to match Java regex patterns.",
+      "properties": {
+        "argsMatchers": {
+          "type": "object",
+          "description": "Tool argument name to Java regex alternatives. Every listed argument must exist and match at least one pattern.",
+          "markdownDescription": "Tool argument name to Java regex alternatives. Every listed argument must exist and match at least one pattern.",
           "additionalProperties": {
             "type": "array",
             "items": {

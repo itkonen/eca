@@ -264,6 +264,26 @@
     
     
       <li class="md-tabs__item">
+        <a href="../install/" class="md-tabs__link">
+          
+  
+  
+  Install
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
         <a href="../config/introduction/" class="md-tabs__link">
           
   
@@ -601,7 +621,7 @@
   
   
   <span class="md-ellipsis">
-    Configuration
+    Install
     
   </span>
   
@@ -611,6 +631,81 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Install
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install ECA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Configuration
           </label>
@@ -629,6 +724,29 @@
   
   <span class="md-ellipsis">
     Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Templates
     
   </span>
   
@@ -1345,6 +1463,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#chat-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat list (↩️)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat open (↩️)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#chat-selected-agent-changed" class="md-nav__link">
     <span class="md-ellipsis">
       Chat selected agent changed (➡️)
@@ -1366,6 +1502,15 @@
   <a href="#editor-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       Editor diagnostics (↪️)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat-ask-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat ask question (↪️)
     </span>
   </a>
   
@@ -2018,6 +2163,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#chat-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat list (↩️)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat open (↩️)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#chat-selected-agent-changed" class="md-nav__link">
     <span class="md-ellipsis">
       Chat selected agent changed (➡️)
@@ -2039,6 +2202,15 @@
   <a href="#editor-diagnostics" class="md-nav__link">
     <span class="md-ellipsis">
       Editor diagnostics (↪️)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat-ask-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat ask question (↪️)
     </span>
   </a>
   
@@ -2538,6 +2710,18 @@ separated by a <code>\r\n</code>.</p>
 <span class="cm">             */</span><span class="w"> </span>
 <span class="w">            </span><span class="nx">diagnostics?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="cm">/**</span>
+<span class="cm">         * Chat-related capabilities beyond the basic chat flag.</span>
+<span class="cm">         */</span>
+<span class="w">        </span><span class="nx">chatCapabilities</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/**</span>
+<span class="cm">             * Whether client supports `chat/askQuestion` server request,</span>
+<span class="cm">             * enabling the server to ask the user a question and receive an answer</span>
+<span class="cm">             * during a chat session.</span>
+<span class="cm">             */</span>
+<span class="w">            </span><span class="nx">askQuestion?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
@@ -2707,7 +2891,7 @@ Used for broader questions or continuous discussion of project/files.</p>
 <span class="cm"> */</span>
 <span class="kr">type</span><span class="w"> </span><span class="nx">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 
-<span class="kr">type</span><span class="w"> </span><span class="nx">ChatContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">FileContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">DirectoryContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">WebContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">RepoMapContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">CursorContext</span><span class="w"> </span><span class="o">|</span><span class="nx">McpResourceContext</span><span class="p">;</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">ChatContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">FileContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">DirectoryContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">WebContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">RepoMapContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">CursorContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">McpResourceContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">ImageContext</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Context related to a file in the workspace</span>
@@ -2750,6 +2934,28 @@ Used for broader questions or continuous discussion of project/files.</p>
 <span class="cm">     * URL of the web content</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Inline image context supplied by the client.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Use this when the client cannot supply a filesystem path the server can</span>
+<span class="cm"> * read (e.g. web ECA). For filesystem-capable clients (vscode, intellij,</span>
+<span class="cm"> * emacs, …) a `FileContext` pointing at a `.png/.jpg/.jpeg/.gif/.webp`</span>
+<span class="cm"> * file is equivalent and can keep being used.</span>
+<span class="cm"> */</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ImageContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * MIME type of the image bytes (e.g. &#39;image/png&#39;, &#39;image/jpeg&#39;).</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">mediaType</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Raw base64-encoded image bytes (no `data:` URL prefix).</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">base64</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -2876,6 +3082,7 @@ Used for broader questions or continuous discussion of project/files.</p>
 <span class="kr">type</span><span class="w"> </span><span class="nx">ChatContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
 <span class="w">    </span><span class="nx">ChatTextContent</span><span class="w"> </span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nx">ChatURLContent</span><span class="w"> </span>
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nx">ChatImageContent</span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nx">ChatProgressContent</span><span class="w"> </span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nx">ChatUsageContent</span>
 <span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nx">ChatReasonStartedContent</span><span class="w"> </span>
@@ -3054,6 +3261,32 @@ Used for broader questions or continuous discussion of project/files.</p>
 <span class="cm">     * The URL link</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Image content from the assistant. Produced either by a server-side</span>
+<span class="cm"> * image generation tool (e.g. OpenAI&#39;s `image_generation` Responses-API</span>
+<span class="cm"> * tool) or by an MCP tool whose result includes an `image` content block</span>
+<span class="cm"> * (e.g. an MCP image-generation/edit server). In both cases, ECA emits</span>
+<span class="cm"> * one `ChatImageContent` per image so clients can render without</span>
+<span class="cm"> * inspecting tool-call outputs.</span>
+<span class="cm"> *</span>
+<span class="cm"> * The image bytes are delivered inline as base64 so that web/remote ECA</span>
+<span class="cm"> * clients (e.g. web.eca.dev) can render without filesystem access.</span>
+<span class="cm"> */</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ChatImageContent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The MIME type of the image bytes (e.g. &#39;image/png&#39;).</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">mediaType</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Raw base64-encoded image bytes (no `data:` URL prefix).</span>
+<span class="cm">     * Clients should decode and render or wrap in a data URL as needed.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">base64</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -3682,7 +3915,7 @@ UX follows <code>/&lt;command&gt;</code> to spawn a command.</p>
 <span class="w">    </span><span class="nx">arguments</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
 <span class="w">       </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="w">       </span><span class="nx">description?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<span class="w">       </span><span class="nx">required</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span>
+<span class="w">       </span><span class="nx">required?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}];</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -3947,6 +4180,98 @@ Server will persist the change, broadcast to all connected clients via <code>cha
 <p><em>Response:</em></p>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatUpdateResponse</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div>
+<h3 id="chat-list">Chat list (↩️)<a class="headerlink" href="#chat-list" title="Permanent link">#</a></h3>
+<p>A client request to list all persisted chats for the current workspace,
+so a freshly-started client can populate its sidebar without waiting for the
+user to resume or re-create each chat.</p>
+<p>Subagent chats are excluded. Results are sorted descending by <code>updatedAt</code> by
+default, falling back to <code>createdAt</code> when <code>updatedAt</code> is missing.</p>
+<p><em>Request:</em></p>
+<ul>
+<li>method: <code>chat/list</code></li>
+<li>params: <code>ChatListParams</code> defined as follows:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatListParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Optional maximum number of chats to return.</span>
+<span class="cm">     * When omitted or non-positive, all chats are returned.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">limit?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Optional sort key. Defaults to &quot;updatedAt&quot;.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">sortBy</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;updatedAt&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;createdAt&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em>Response:</em></p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatListResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">chats</span><span class="o">:</span><span class="w"> </span><span class="kt">ChatSummary</span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ChatSummary</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/** The chat session identifier. */</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** Human-readable title, when available. */</span>
+<span class="w">    </span><span class="nx">title?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** Current chat status. */</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;idle&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;running&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;stopping&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;login&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** Epoch millis when the chat was created, when available. */</span>
+<span class="w">    </span><span class="nx">createdAt?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** Epoch millis of the most recent update, when available. */</span>
+<span class="w">    </span><span class="nx">updatedAt?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** The last full model id used for this chat, when available. */</span>
+<span class="w">    </span><span class="nx">model?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** Number of persisted messages. */</span>
+<span class="w">    </span><span class="nx">messageCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="chat-open">Chat open (↩️)<a class="headerlink" href="#chat-open" title="Permanent link">#</a></h3>
+<p>A client request to hydrate a previously-persisted chat so it can be rendered
+in the UI. The server replays the chat by emitting <code>chat/cleared</code> (messages),
+<code>chat/opened</code>, and a sequence of <code>chat/contentReceived</code> notifications matching
+the persisted messages. When the persisted chat has a stored model the server
+additionally emits a <code>config/updated</code> notification to realign the client's
+selected model (and available variants) with the resumed chat, so the next
+prompt keeps using the chat's original provider/model. The same notification
+also carries <code>selectTrust</code> reflecting the resumed chat's trust toggle, so the
+client indicator stays in sync with the auto-approval behavior the server will
+apply. Typically used after <code>chat/list</code> when the user selects a chat that has
+not been opened in the current client session.</p>
+<p><em>Request:</em></p>
+<ul>
+<li>method: <code>chat/open</code></li>
+<li>params: <code>ChatOpenParams</code> defined as follows:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatOpenParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The chat session identifier to open.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">chatId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em>Response:</em></p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatOpenResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * True when the chat exists and its content has been replayed via</span>
+<span class="cm">     * chat/cleared + chat/opened + chat/contentReceived. False when the</span>
+<span class="cm">     * chat is unknown or is a subagent chat.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">found</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** The chat id that was replayed (echo of the request), present when found. */</span>
+<span class="w">    </span><span class="nx">chatId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/** The chat title at the time of replay, when available. */</span>
+<span class="w">    </span><span class="nx">title?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="chat-selected-agent-changed">Chat selected agent changed (➡️)<a class="headerlink" href="#chat-selected-agent-changed" title="Permanent link">#</a></h3>
 <p>A client notification for server telling the user selected a different agent in chat.</p>
 <p><em>Notification:</em></p>
@@ -4040,6 +4365,74 @@ Useful for server to provide to LLM information about errors/warnings about curr
 <span class="cm">     * The diagnostic message. Ex: &#39;Wrong number of args for function X&#39;</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="chat-ask-question">Chat ask question (↪️)<a class="headerlink" href="#chat-ask-question" title="Permanent link">#</a></h3>
+<p>A server request to ask the user a question and receive an answer during a chat session.
+This enables the server to present the user with a question (optionally with predefined options)
+and wait for their response. When <code>allowFreeform</code> is true, the user can type a custom answer in addition to selecting a predefined option.</p>
+<p><em>Request:</em></p>
+<ul>
+<li>method: <code>chat/askQuestion</code></li>
+<li>params: <code>ChatAskQuestionParams</code> defined as follows:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatAskQuestionParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The chat id where the question is being asked.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">chatId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The question text to present to the user.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">question</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Optional predefined options for the user to choose from.</span>
+<span class="cm">     * When present, the client should render these as selectable choices.</span>
+<span class="cm">     * The user should always be able to type a custom answer regardless.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">options?</span><span class="o">:</span><span class="w"> </span><span class="kt">ChatAskQuestionOption</span><span class="p">[];</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Optional tool call id that originated this question.</span>
+<span class="cm">     * When present, the client may hide the associated tool call block</span>
+<span class="cm">     * and show the question inline instead.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">toolCallId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Whether the user can type a custom freeform answer.</span>
+<span class="cm">     * When false, only the predefined options (and cancel) are valid.</span>
+<span class="cm">     * Defaults to true.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">allowFreeform</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ChatAskQuestionOption</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Short label for the option.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Optional description providing more context about the option.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">description?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><em>Response:</em></p>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatAskQuestionResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The user&#39;s answer. Contains the selected option label or freeform text.</span>
+<span class="cm">     * Null when cancelled.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">answer</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Whether the user cancelled the question without answering.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">cancelled</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="completion">Completion (↩️)<a class="headerlink" href="#completion" title="Permanent link">#</a></h3>
@@ -4273,6 +4666,17 @@ Clients should update UI accordingly, if a field is missing/null, means it had n
 <span class="cm">         * null means no variant should be selected (e.g. model has no variants).</span>
 <span class="cm">         */</span>
 <span class="w">        </span><span class="nx">selectVariant?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">        </span><span class="cm">/**</span>
+<span class="cm">         * The trust toggle state for the active chat. When present clients</span>
+<span class="cm">         * should forcefully update the chat trust indicator (and any</span>
+<span class="cm">         * derived UI like a shield/flame icon) to match this value.</span>
+<span class="cm">         *</span>
+<span class="cm">         * Server returns this on chat resume (`chat/open`, `/resume`) so the</span>
+<span class="cm">         * client&#39;s indicator matches the auto-approval behavior the server</span>
+<span class="cm">         * will apply for subsequent tool calls in the resumed chat.</span>
+<span class="cm">         */</span>
+<span class="w">        </span><span class="nx">selectTrust?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
 
 <span class="w">        </span><span class="cm">/**</span>
 <span class="cm">        * Message to show when starting a new chat.</span>
@@ -4897,7 +5301,7 @@ Clients can track all tasks to derive aggregate initialization progress.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 14, 2026 07:56:53 UTC">April 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 5, 2026 15:35:09 UTC">May 5, 2026</span>
   </span>
 
     

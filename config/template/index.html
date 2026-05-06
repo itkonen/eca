@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Configure ECA agents and subagents: custom system prompts, model selection, tool access, and parallel task delegation.">
+        <meta name="description" content="Use templates and condition variables in ECA configuration files, prompts, and rules.">
       
       
       
-        <link rel="canonical" href="https://eca.dev/config/agents/">
+        <link rel="canonical" href="https://eca.dev/config/template/">
       
       
-        <link rel="prev" href="../commands/">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../hooks/">
+        <link rel="next" href="../models/">
       
       
       <link rel="icon" href="../../images/logo.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Agents / Subagents - ECA - Editor Code Assistant</title>
+        <title>Templates - ECA - Editor Code Assistant</title>
       
     
     
@@ -78,9 +78,9 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Agents / Subagents - ECA - Editor Code Assistant" />
-  <meta property="og:description" content="Configure ECA agents and subagents: custom system prompts, model selection, tool access, and parallel task delegation." />
-  <meta property="og:url" content="https://eca.dev/config/agents/" />
+  <meta property="og:title" content="Templates - ECA - Editor Code Assistant" />
+  <meta property="og:description" content="Use templates and condition variables in ECA configuration files, prompts, and rules." />
+  <meta property="og:url" content="https://eca.dev/config/template/" />
   <meta property="og:image" content="https://eca.dev/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -88,8 +88,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Agents / Subagents - ECA - Editor Code Assistant" />
-  <meta name="twitter:description" content="Configure ECA agents and subagents: custom system prompts, model selection, tool access, and parallel task delegation." />
+  <meta name="twitter:title" content="Templates - ECA - Editor Code Assistant" />
+  <meta name="twitter:description" content="Use templates and condition variables in ECA configuration files, prompts, and rules." />
   <meta name="twitter:image" content="https://eca.dev/images/og-image.png" />
 
   </head>
@@ -104,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#agents-subagents" class="md-skip">
+        <a href="#templates" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Agents / Subagents
+              Templates
             
           </span>
         </div>
@@ -741,10 +741,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../template/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Templates
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -755,6 +777,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#condition-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condition variables
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -902,32 +953,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Agents / Subagents
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
         
   
   
@@ -938,62 +967,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#built-in-agents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Built-in agents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#inheriting-from-other-agents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inheriting from other agents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-agents-and-prompts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Custom agents and prompts
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#subagents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subagents
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1328,36 +1301,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#built-in-agents" class="md-nav__link">
+  <a href="#condition-variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Built-in agents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#inheriting-from-other-agents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inheriting from other agents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-agents-and-prompts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Custom agents and prompts
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#subagents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Subagents
+      Condition variables
     </span>
   </a>
   
@@ -1382,174 +1328,51 @@
   
 
 
-<h1 id="agents-subagents">Agents / Subagents<a class="headerlink" href="#agents-subagents" title="Permanent link">#</a></h1>
-<p><img alt="" src="../../images/features/chat-agents.png" /></p>
-<p>When using ECA chat, you can choose which agent it will use, each allows you to customize its system prompt, tool call approvals, disabled tools, default model, skills and more.</p>
-<p>There are 2 types of agents defined via <code>mode</code> field (when absent, defaults to primary):</p>
-<ul>
-<li><code>primary</code>: main agents, used in chat, can spawn subagents.</li>
-<li><code>subagent</code>: an agent allowed to be spawned inside a chat to do a specific task and return a output to the primary agent.</li>
-</ul>
-<h2 id="built-in-agents">Built-in agents<a class="headerlink" href="#built-in-agents" title="Permanent link">#</a></h2>
+<h1 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">#</a></h1>
+<p>ECA supports templating in configurable prompts and rules, so instructions can adapt to the current chat context.</p>
+<p>For loading files, environment variables, classpath resources, or netrc credentials in config strings, see <a href="../introduction/#dynamic-string-contents">Dynamic string contents</a>.</p>
+<h2 id="condition-variables">Condition variables<a class="headerlink" href="#condition-variables" title="Permanent link">#</a></h2>
+<p>Custom agent prompts and <a href="../rules/">rules</a> are rendered with <a href="https://github.com/yogthos/Selmer">Selmer</a>. Use condition variables when one prompt or rule should behave differently depending on the current chat.</p>
+<p>Available variables:</p>
 <table>
 <thead>
 <tr>
-<th>name</th>
-<th>mode</th>
-<th>description</th>
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>code</strong></td>
-<td>primary</td>
-<td>Default, generic, used to do most tasks, has access to all tools by default</td>
+<td><code>isSubagent</code></td>
+<td>boolean</td>
+<td><code>true</code> when the chat is running as a subagent</td>
 </tr>
 <tr>
-<td><strong>plan</strong></td>
-<td>primary</td>
-<td>Specialized in building a plan before user switches to code agent and executes the complex task. Has no edit tools available, only preview changes.</td>
+<td><code>workspaceRoots</code></td>
+<td>string</td>
+<td>The current workspace root paths</td>
 </tr>
 <tr>
-<td><strong>explorer</strong></td>
-<td>subagent</td>
-<td>Fast agent specialized for exploring codebases. Finds files by patterns, searches code for keywords, or answers questions about the codebase. Read-only, no edit tools.</td>
-</tr>
-<tr>
-<td><strong>general</strong></td>
-<td>subagent</td>
-<td>General-purpose agent for researching complex questions and executing multi-step tasks. Can be used to execute multiple units of work in parallel.</td>
+<td><code>toolEnabled_&lt;tool-name&gt;</code></td>
+<td>boolean</td>
+<td><code>true</code> when a tool is enabled, using its exact full name, e.g. <code>toolEnabled_eca__shell_command</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="inheriting-from-other-agents">Inheriting from other agents<a class="headerlink" href="#inheriting-from-other-agents" title="Permanent link">#</a></h2>
-<p>You can create a new agent that inherits all settings from an existing agent using the <code>inherit</code> key. The new agent's settings are deep-merged on top of the inherited agent's settings, so any field you specify overrides the parent's value while the rest is preserved.</p>
-<p>This is useful when you want a variant of a built-in or custom agent with small tweaks, without duplicating the entire configuration.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="config" name="__tabbed_1" type="radio" /><input id="markdown" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="config">Config</label><label for="markdown">Markdown</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">~/.config/eca/config.json</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;agent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;my-plan&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;inherit&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;plan&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;defaultModel&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;openai/gpt-5&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The <code>my-plan</code> agent above inherits all of <code>plan</code>'s configuration (disabled tools, tool approval rules, prompts, etc.) but uses a different default model.</p>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">.eca/agents/my-explorer.md</span><pre><span></span><code>---
-inherit: explorer
-description: Explorer with a custom model
-<span class="gu">defaultModel: google/gemini-2.5-pro</span>
-<span class="gu">---</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="custom-agents-and-prompts">Custom agents and prompts<a class="headerlink" href="#custom-agents-and-prompts" title="Permanent link">#</a></h2>
-<p>You can create an agent and define its prompt, tool call approval and default model. Custom prompts can use <a href="../template/#condition-variables">template variables</a>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="example-my-agent" name="__tabbed_2" type="radio" /><input id="example-overriding-a-tool-description" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="example-my-agent">Example: my-agent</label><label for="example-overriding-a-tool-description">Example: Overriding a tool description</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">~/.config/eca/config.json</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;agent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;my-agent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;prompts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s2">&quot;chat&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${file:/path/to/my-agent-prompt.md}&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">~/.config/eca/config.json</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;prompts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;tools&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;eca__edit_file&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${file:/path/to/my-tool-prompt.md}&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="subagents">Subagents<a class="headerlink" href="#subagents" title="Permanent link">#</a></h2>
-<p>ECA can spawn foreground subagents in a chat, they are agents which <code>mode</code> is <code>subagent</code>.</p>
-<p>The major advantages of subagents are:</p>
-<ul>
-<li><strong>Less context polution</strong>: sometimes LLM needs to do a specific task that require multiple tool calls, but after finished, it doesn't need all those tool calls and iterations in its history, subagent works great for that, for example the <code>explorer</code> built-in subagent.</li>
-<li><strong>Less context window usage</strong>: Since subagents work as different chats/context/cleaner context, they have their own context window and when done the tools and process done there doesn't affect the primary agent context window, resulting and bigger conversations and less compaction needed.</li>
-<li><strong>Parallel subagents</strong>: subagents are spawned as tools, and ECA supports parallel tool calls if LLM supports, this increase speed of task solution if LLM needs for example to explore 2-3 different things with <code>explorer</code> subagent, spawning those in parallel.</li>
-</ul>
-<p>Subagents can be configured in config or markdown and support/require these fields:</p>
-<ul>
-<li><code>mode</code> (required): <code>subagent</code> always, this is what differs a primary agent from a subagent for ECA.</li>
-<li><code>description</code> (required): a short summary of what this subagent will do, this is important to primary agent knows when to delegate to it.</li>
-<li>
-<p><code>systemPrompt</code> or the markdown content (required unless using <code>inherit</code>): Instructions for the subagent to what do when receive a task.</p>
-</li>
-<li>
-<p><code>inherit</code> (optional): name of another agent to inherit all settings from. The subagent's own fields are merged on top.</p>
-</li>
-<li><code>model</code> (optional): which full model to use for this subagent, using primary agent model if not specified.</li>
-<li><code>tools</code> (optional): same as ECA tool approval logic to control what tools are allowed/askable/denied.</li>
-<li><code>maxSteps</code> (optional): set a max limit of turns/steps that his subagent must finish and return an answer.</li>
-</ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="markdown_1" name="__tabbed_3" type="radio" /><input id="config_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="markdown_1">Markdown</label><label for="config_1">Config</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Agents can be defined in local or global markdown files inside a <code>agents</code> folder, those will be merged to ECA config. Example:</p>
-<div class="highlight"><span class="filename">~/.config/eca/agents/my-agent.md</span><pre><span></span><code>---
-mode: subagent
-description: You sleep one second when asked
-model: ${env:MY_MODEL:anthropic/sonnet-4.5}
-tools:
-  byDefault: ask
-  deny: 
-<span class="w">    </span><span class="k">-</span><span class="w"> </span>my_mcp__my_tool
-  allow: 
-<span class="gu">    - eca__shell_command</span>
-<span class="gu">---</span>
+<div class="highlight"><span class="filename">Prompt or rule</span><pre><span></span><code>{% if isSubagent %}
+Be concise and return only the final result.
+{% else %}
+Explain important trade-offs and assumptions.
+{% endif %}
 
-You should run sleep 1 and return &quot;I slept 1 second&quot;
+{% if toolEnabled_eca__shell_command %}
+You can run shell commands to verify your work.
+{% endif %}
+
+Current workspace roots: {{ workspaceRoots }}
 </code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Pattern-based tool approval in markdown</p>
-<p>You can append a regex pattern in parentheses after a tool name to restrict approval to calls matching the pattern. Currently only <code>eca__shell_command</code> supports this — the pattern is matched against its <code>command</code> argument. Multiple entries for the same tool are automatically merged.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">tools</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">allow</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eca__shell_command(npm run .*)</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eca__shell_command(git diff(\s+.*)?)</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eca__read_file</span>
-</code></pre></div>
-<p>This is equivalent to <code>argsMatchers</code> in JSON config. Patterns on tools other than <code>eca__shell_command</code> are currently ignored.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Tool call approval</p>
-<p>For more complex tool call approval, use toolCall via config</p>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">~/.config/eca/config.json</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;agent&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;sleeper&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s2">&quot;mode&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;subagent&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;You sleep one second when asked&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;systemPrompt&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;You should run sleep 1 and return \&quot;I slept 1 second\&quot;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;defaultModel&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;anthropic/sonnet-4.5&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;toolCall&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{...},</span>
-<span class="w">      </span><span class="s2">&quot;maxSteps&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="c1">// Optional: to limit turns in subagent</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-</div>
-</div>
+<p>If a rule renders to an empty string, ECA skips it and does not add an empty rule block to the system prompt.</p>
 
 
 
@@ -1601,22 +1424,22 @@ You should run sleep 1 and return &quot;I slept 1 second&quot;
   
   <nav class="md-footer__inner md-grid" aria-label="Footer" >
     
-    <a href="../commands/" class="md-footer__link md-footer__link--prev">
+    <a href="../introduction/" class="md-footer__link md-footer__link--prev">
       <div class="md-footer__button md-icon">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </div>
       <div class="md-footer__title">
         <span class="md-footer__direction">Previous</span>
-        <span class="md-ellipsis">Commands</span>
+        <span class="md-ellipsis">Introduction</span>
       </div>
     </a>
     
     
-    <a href="../hooks/" class="md-footer__link md-footer__link--next">
+    <a href="../models/" class="md-footer__link md-footer__link--next">
       <div class="md-footer__title">
         <span class="md-footer__direction">Next</span>
-        <span class="md-ellipsis">Hooks</span>
+        <span class="md-ellipsis">Providers / Models</span>
       </div>
       <div class="md-footer__button md-icon">
         
