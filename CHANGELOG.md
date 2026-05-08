@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Guard subagent activity labels against overly long model-generated text.
+
 ## 0.133.3
 
 - Add unit and integration tests covering parent↔subagent end-to-end communication so regressions like the v0.133.1 spawn-agent breakage are caught automatically.
