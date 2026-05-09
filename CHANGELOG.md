@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Guard subagent activity labels against overly long model-generated text.
+- Improve CPU usage while streaming tool-call arguments by reusing the prompt's tool list.
 
 ## 0.133.3
 
