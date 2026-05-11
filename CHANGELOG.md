@@ -4,6 +4,8 @@
 
 - Guard subagent activity labels against overly long model-generated text.
 - Improve CPU usage while streaming tool-call arguments by reusing the prompt's tool list.
+- Bugfix: OpenAI Responses tool calls now opt out of strict schema normalization so optional tool parameters remain optional.
+- Bugfix: MCP tool calls now route to the selected server when multiple servers expose the same tool name.
 
 ## 0.133.3
 
