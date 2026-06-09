@@ -576,6 +576,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Read Chat CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -716,29 +739,6 @@
   
   <span class="md-ellipsis">
     Introduction
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../config/template/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Templates
     
   </span>
   
@@ -1242,6 +1242,141 @@
   <a href="#unreleased" class="md-nav__link">
     <span class="md-ellipsis">
       Unreleased
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01400" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.140.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01392" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.139.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01391" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.139.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01390" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.139.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01381" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.138.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01380" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.138.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01370" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.137.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01364" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.136.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01363" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.136.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01362" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.136.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01361" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.136.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01360" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.136.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01354" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.135.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01353" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.135.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01352" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.135.2
     </span>
   </a>
   
@@ -4382,6 +4517,98 @@
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">#</a></h1>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">#</a></h2>
+<h2 id="01400">0.140.0<a class="headerlink" href="#01400" title="Permanent link">#</a></h2>
+<ul>
+<li>Add <code>preCompact</code>, <code>postCompact</code> and <code>subagentStart</code> hooks; subagents no longer trigger <code>chatStart</code>.</li>
+<li>Add <code>/hooks</code> command with optional <code>description</code> field in hook config.</li>
+<li>Tool hooks (<code>preToolCall</code>/<code>postToolCall</code>) now include <code>tool_call_id</code> in input data.</li>
+<li>Expand hook contracts: <code>response</code> not <code>prompt</code>, plain-text <code>tool_response</code>, <code>continue:false</code> everywhere, <code>followUp</code>, <code>replacedOutput</code>, standalone <code>systemMessage</code>, exact-string matchers.</li>
+<li>Fix <code>postToolCall continue:false</code> leaking across turns, <code>chatStart</code> <code>additionalContext</code> dropped, and <code>preRequest</code> exit-2 naming the blocking hook.</li>
+<li>Add Claude Fable 5 and Mythos 5 support.</li>
+</ul>
+<h2 id="01392">0.139.2<a class="headerlink" href="#01392" title="Permanent link">#</a></h2>
+<ul>
+<li>MCP OAuth: add <code>authScope</code> (<code>global</code> default / <code>workspace</code> / custom bucket) to namespace stored tokens, so signing into different accounts per project no longer clobbers a shared server's token.</li>
+<li>OpenAI: inline completion no longer fails with a <code>NullPointerException</code> on provider/auth errors (e.g. OAuth login); the underlying error is surfaced instead. (#495)</li>
+<li>Surface a clear error when a prompt exceeds the model's context window instead of silently finishing; skip auto-compaction when there's no conversation to compact. (#491)</li>
+<li>Resolve home via <code>$HOME</code>/<code>$USERPROFILE</code> when <code>user.home</code> is invalid (e.g. native image, email-style username), fixing broken cache paths and login persistence. (#490)</li>
+</ul>
+<h2 id="01391">0.139.1<a class="headerlink" href="#01391" title="Permanent link">#</a></h2>
+<ul>
+<li>Model fetch: skip providers without configured credentials, include the response body in 4xx/5xx logs, and quiet down per-provider logging.</li>
+<li>Model fetch: renew near-expiry OAuth tokens before syncing catalogs, fixing spurious <code>token expired</code> 401s (e.g. GitHub Copilot) on startup and config reloads.</li>
+<li>GitHub Copilot: present the expected VS Code editor identity (<code>Editor-Version</code>/<code>Editor-Plugin-Version</code>/<code>Copilot-Integration-Id</code>) on model-catalog and chat requests, fixing <code>400 ... Editor-Version header for IDE auth</code>.</li>
+</ul>
+<h2 id="01390">0.139.0<a class="headerlink" href="#01390" title="Permanent link">#</a></h2>
+<ul>
+<li>Remote mode: <code>ask_user</code> now reaches both the editor and connected SSE/web clients simultaneously, with the first answer from either winning, instead of only the web client when one is connected.</li>
+<li>Remote REST API: <code>GET /api/v1/chats/:id</code> <code>pendingToolCalls</code> now includes <code>ask_user</code> tool calls while waiting for an answer, with a <code>requestId</code> field for <code>POST /api/v1/answer</code>.</li>
+<li>Add OpenAI Responses API for GitHub Copilot models that require it (gpt-5.5, gpt-5.4-mini).</li>
+<li>MCP OAuth: persist and reuse the dynamically-registered client on token refresh, so servers with non-idempotent DCR (e.g. RunLayer) refresh instead of forcing a browser re-login, and recover from expired-token tool errors automatically.</li>
+<li>Deliver cursor context per-turn in the user message instead of the system prompt, and only re-send it when the position changes, so a moving cursor no longer invalidates the cached system prefix (avoiding llama.cpp full prompt re-processing). (#464)</li>
+<li>Remote endpoint now lists resumed and forked chats immediately, without waiting for the first prompt.</li>
+<li>Fix resumed chats being permanently missing from the remote <code>GET /session</code> and <code>GET /chats</code> endpoints.</li>
+</ul>
+<h2 id="01381">0.138.1<a class="headerlink" href="#01381" title="Permanent link">#</a></h2>
+<ul>
+<li>Allow overriding a model's context/output token limits and pricing per model in config (<code>limit</code>/<code>cost</code>), enabling the usage display and auto-compaction for local/custom models. (#46)</li>
+</ul>
+<h2 id="01380">0.138.0<a class="headerlink" href="#01380" title="Permanent link">#</a></h2>
+<ul>
+<li>Git tool: commit/PR attribution now includes the active model (and variant when set), e.g. <code>Generated with ECA (anthropic/opus-4.8 - high)</code>.</li>
+<li><code>/login</code> warns when a configured/env API key (e.g. <code>OPENAI_API_KEY</code>) takes precedence over login auth, plus docs make the precedence explicit. (#485)</li>
+<li>Custom commands support optional YAML frontmatter <code>description</code> and named <code>{{name}}</code> arguments (with per-arg description/required). (#484)</li>
+<li>Add <code>extraConfigs</code> config: list of file paths (relative to workspace root or absolute) deep merged last, overriding all other config sources. (#486)</li>
+</ul>
+<h2 id="01370">0.137.0<a class="headerlink" href="#01370" title="Permanent link">#</a></h2>
+<ul>
+<li>Remote REST API: <code>GET /api/v1/chats/:id</code> now exposes the chat's effective <code>model</code>, <code>variant</code> and <code>agent</code> (per-chat override, falling back to the resolved session default).</li>
+<li>Anthropic: serialize empty thinking blocks as <code>""</code> instead of nil, fixing a 400 on multi-turn chats with extended thinking. (#481)</li>
+<li>Add AWS Bedrock provider using the native <code>Converse</code>/<code>ConverseStream</code> APIs with bearer-token auth, supporting models not available on Bedrock's OpenAI-compatible endpoint (e.g. Claude inference profiles). #254</li>
+</ul>
+<h2 id="01364">0.136.4<a class="headerlink" href="#01364" title="Permanent link">#</a></h2>
+<ul>
+<li>Add <code>/debug-chat [filepath]</code> command dumping an obfuscated snapshot of the current chat (message structure + model/variant/tool/status metadata) to a file for debugging stuck chats.</li>
+<li>Add <code>remote.bindHost</code> config to force the remote server's listening interface (e.g. a Tailscale IP), binding only there with no localhost fallback.</li>
+<li>Anthropic: send <code>anthropic-version</code> when fetching <code>/v1/models</code>, fixing a 400 that forced the static models.dev fallback instead of the live model list.</li>
+</ul>
+<h2 id="01363">0.136.3<a class="headerlink" href="#01363" title="Permanent link">#</a></h2>
+<ul>
+<li>Anthropic: request uncompressed SSE (<code>accept-encoding: identity</code> + <code>:decompress-body false</code>) so streamed responses arrive token-by-token instead of all at once.</li>
+<li>Remote REST API now surfaces tool calls awaiting approval: <code>GET /api/v1/chats/:id</code> returns <code>pendingToolCalls</code> and session/list-chats entries include <code>pendingApprovalCount</code>.</li>
+<li>Fix openai-chat providers (e.g. Mistral) showing raw reasoning content blocks as chat text when a reasoning variant is enabled; thinking now routes to the reasoning UI. (#477)</li>
+</ul>
+<h2 id="01362">0.136.2<a class="headerlink" href="#01362" title="Permanent link">#</a></h2>
+<ul>
+<li>Add <code>chat.defaultTrust</code> config to start new chats in trust mode (auto-accepting tool calls) across all editors.</li>
+<li>Prompt now renders context as labeled <code>## Static Contexts</code> and <code>## Dynamic Contexts</code> sections, with Environment Context no longer wedged between them.</li>
+<li>System prompt's Environment Context section now includes OS, default shell, username and home directory.</li>
+</ul>
+<h2 id="01361">0.136.1<a class="headerlink" href="#01361" title="Permanent link">#</a></h2>
+<ul>
+<li>New <code>eca read-chat</code> CLI command for streaming raw chat DB cache records as JSONL.</li>
+<li>Fix chats randomly disappearing from <code>/resume</code> after restart: key the workspace chat cache on the order-independent workspace hash and merge caches fragmented across differently-named dirs. (eca-intellij #20)</li>
+</ul>
+<h2 id="01360">0.136.0<a class="headerlink" href="#01360" title="Permanent link">#</a></h2>
+<ul>
+<li>Anthropic Opus 4.8: send volatile (dynamic) instructions as a mid-conversation system message so the cached conversation history isn't invalidated each turn.</li>
+</ul>
+<h2 id="01354">0.135.4<a class="headerlink" href="#01354" title="Permanent link">#</a></h2>
+<ul>
+<li><code>bg_job</code> now shows the job name (from <code>shell_command</code>'s <code>background</code> arg) in <code>list</code>, <code>read_output</code> and <code>kill</code> outputs, e.g. <code>Background job "dev-server" (job-1) killed.</code>.</li>
+<li>Add Claude Opus 4.8 support.</li>
+</ul>
+<h2 id="01353">0.135.3<a class="headerlink" href="#01353" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix plugin primary agents being dropped from the selector when model sync finishes after plugin resolution.</li>
+<li>Fix <code>nix run</code> failing because the completion auth-renew test wrote to the read-only sandbox HOME. #467</li>
+<li>Fix <code>streamIdleTimeoutSeconds</code> and <code>cacheRetention</code> being ignored for custom providers using the Anthropic API. #470</li>
+<li>Fix <code>/compact</code> getting stuck when Anthropic-compatible providers signal context overflow via stop_reason <code>max_tokens</code> (e.g. Z.AI). #471</li>
+</ul>
+<h2 id="01352">0.135.2<a class="headerlink" href="#01352" title="Permanent link">#</a></h2>
+<ul>
+<li>Bugfix: occasional <code>NoSuchFileException</code> when persisting the DB cache; each save now uses a unique temp file and concurrent writers to the same file are serialized in-process.</li>
+</ul>
 <h2 id="01351">0.135.1<a class="headerlink" href="#01351" title="Permanent link">#</a></h2>
 <ul>
 <li>Fix <code>invalid_grant</code> errors when multiple ECA processes race to refresh the same OAuth token. #462</li>
@@ -6185,7 +6412,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 1, 2026 12:06:24 UTC">June 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 17:49:59 UTC">June 9, 2026</span>
   </span>
 
     
