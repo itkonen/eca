@@ -378,3 +378,105 @@
       (is (= 2 (count (:chat-status-changed (h/messages))))
           "both finishes must notify clients despite the unchanged idle payload")
       (is (every? #(= :idle (:status %)) (:chat-status-changed (h/messages)))))))
+
+(deftest run-post-request-hooks!-dispatch-test
+  (testing "primary chat: only postRequest is dispatched"
+    (let [db* (atom {:workspace-folders []
+                     :chats {chat-id {:id chat-id :status :idle}}})
+          triggered* (atom [])
+          ctx {:chat-id chat-id
+               :db* db*
+               :config {}
+               :messenger (h/messenger)}]
+      (with-redefs [f.hooks/trigger-if-matches! (fn [hook-type & _] (swap! triggered* conj hook-type))]
+        (#'lifecycle/run-post-request-hooks! ctx))
+      (is (= [:postRequest] @triggered*)
+          "postRequest fires exactly once for a primary chat and subagentPostRequest does not")))
+
+  (testing "subagent chat: only subagentPostRequest is dispatched"
+    (let [db* (atom {:workspace-folders []
+                     :chats {chat-id {:id chat-id :status :idle
+                                      :subagent {:type "agent"}
+                                      :parent-chat-id "parent-c"}}})
+          triggered* (atom [])
+          ctx {:chat-id chat-id
+               :db* db*
+               :config {}
+               :messenger (h/messenger)}]
+      (with-redefs [f.hooks/trigger-if-matches! (fn [hook-type & _] (swap! triggered* conj hook-type))]
+        (#'lifecycle/run-post-request-hooks! ctx))
+      (is (= [:subagentPostRequest] @triggered*)
+          "subagentPostRequest fires exactly once for a subagent chat and postRequest does not"))))
+
+(deftest run-post-request-hooks!-primary-continue-false-stops-turn-test
+  (testing "postRequest continue:false stops the turn for a primary chat"
+    (h/reset-components!)
+    (h/config! {:hooks {"stopper" {:type "postRequest"
+                                   :actions [{:type "shell" :shell "echo"}]}}})
+    (let [db* (h/db*)
+          ctx {:chat-id chat-id
+               :db* db*
+               :config (h/config)
+               :messenger (h/messenger)}]
+      (swap! db* assoc-in [:chats chat-id] {:id chat-id :status :idle})
+      (with-redefs [f.hooks/run-shell-cmd
+                    (fn [_] {:exit 0 :out "{\"continue\":false,\"stopReason\":\"blocked\"}" :err nil})]
+        (let [result (#'lifecycle/run-post-request-hooks! ctx)]
+          (is (true? (:stop-turn? result)))
+          (is (= "blocked" (:stop-reason result)))
+          (is (= "stopper" (:stop-hook-name result))))))))
+
+(deftest run-post-request-hooks!-subagent-continue-false-stops-turn-test
+  (testing "subagentPostRequest continue:false stops the turn for a subagent chat"
+    (h/reset-components!)
+    (h/config! {:hooks {"sub-stopper" {:type "subagentPostRequest"
+                                       :actions [{:type "shell" :shell "echo"}]}}})
+    (let [db* (h/db*)
+          ctx {:chat-id chat-id
+               :db* db*
+               :config (h/config)
+               :messenger (h/messenger)}]
+      (swap! db* assoc-in [:chats chat-id] {:id chat-id :status :idle
+                                             :subagent {:type "agent"}
+                                             :parent-chat-id "parent-c"})
+      (with-redefs [f.hooks/run-shell-cmd
+                    (fn [_] {:exit 0 :out "{\"continue\":false,\"stopReason\":\"subagent-blocked\"}" :err nil})]
+        (let [result (#'lifecycle/run-post-request-hooks! ctx)]
+          (is (true? (:stop-turn? result)))
+          (is (= "subagent-blocked" (:stop-reason result)))
+          (is (= "sub-stopper" (:stop-hook-name result)))))))
+
+  (testing "postRequest hook is ignored for a subagent chat even when configured"
+    (h/reset-components!)
+    (h/config! {:hooks {"primary-hook" {:type "postRequest"
+                                        :actions [{:type "shell" :shell "echo"}]}}})
+    (let [db* (h/db*)
+          calls* (atom [])
+          ctx {:chat-id chat-id
+               :db* db*
+               :config (h/config)
+               :messenger (h/messenger)}]
+      (swap! db* assoc-in [:chats chat-id] {:id chat-id :status :idle
+                                             :subagent {:type "agent"}
+                                             :parent-chat-id "parent-c"})
+      (with-redefs [f.hooks/run-shell-cmd (fn [_] (swap! calls* conj :called) {:exit 0 :out nil :err nil})]
+        (#'lifecycle/run-post-request-hooks! ctx))
+      (is (empty? @calls*)
+          "postRequest shell is never executed for a subagent chat"))))
+
+(deftest run-post-request-hooks!-primary-follow-up-test
+  (testing "postRequest followUp text is returned for a primary chat"
+    (h/reset-components!)
+    (h/config! {:hooks {"follow-hook" {:type "postRequest"
+                                       :actions [{:type "shell" :shell "echo"}]}}})
+    (let [db* (h/db*)
+          ctx {:chat-id chat-id
+               :db* db*
+               :config (h/config)
+               :messenger (h/messenger)}]
+      (swap! db* assoc-in [:chats chat-id] {:id chat-id :status :idle})
+      (with-redefs [f.hooks/run-shell-cmd
+                    (fn [_] {:exit 0 :out "{\"followUp\":\"please continue\"}" :err nil})]
+        (let [result (#'lifecycle/run-post-request-hooks! ctx)]
+          (is (= "please continue" (:follow-up-text result)))
+          (is (false? (:stop-turn? result))))))))
