@@ -349,6 +349,12 @@
           "description": "Whether new chats start in trust mode, auto-accepting all tool calls (never overriding deny). Applies to all editors.",
           "markdownDescription": "Whether new chats start in trust mode, auto-accepting all tool calls (never overriding `deny`). Applies to all editors.",
           "default": false
+        },
+        "autoSyncSystemPrompt": {
+          "type": "boolean",
+          "description": "Whether existing chats pick up system prompt changes (AGENTS.md, rules, prompts) mid-chat, invalidating the LLM prompt cache. When false (default), changes apply only to new chats; use the /sync-system-prompt command to apply to the current chat. Skill catalog changes never auto-sync (skill contents are always read fresh when loaded).",
+          "markdownDescription": "Whether existing chats pick up system prompt changes (`AGENTS.md`, rules, prompts) mid-chat, invalidating the LLM prompt cache. When `false` (default), changes apply only to new chats; use the `/sync-system-prompt` command to apply to the current chat. Skill catalog changes never auto-sync (skill contents are always read fresh when loaded).",
+          "default": false
         }
       }
     },
@@ -444,6 +450,34 @@
           "type": "string",
           "description": "Auth token for Bearer authentication. When unset, a 32-byte hex token is auto-generated and logged to stderr.",
           "markdownDescription": "Auth token for Bearer authentication. When unset, a 32-byte hex token is auto-generated and logged to stderr."
+        },
+        "tls": {
+          "type": "object",
+          "description": "HTTPS certificate for the remote server (a *.local.eca.dev wildcard). By default ECA fetches it from tls.eca.dev and caches it under the cache dir; set certFile/keyFile to use your own, or certUrl/keyUrl to override the fetch source.",
+          "markdownDescription": "HTTPS certificate for the remote server (a `*.local.eca.dev` wildcard). By default ECA fetches it from `tls.eca.dev` and caches it under the cache dir; set `certFile`/`keyFile` to use your own, or `certUrl`/`keyUrl` to override the fetch source.",
+          "additionalProperties": false,
+          "properties": {
+            "certFile": {
+              "type": "string",
+              "description": "Path to a PEM certificate chain to use instead of fetching. Requires keyFile.",
+              "markdownDescription": "Path to a PEM certificate chain to use instead of fetching. Requires `keyFile`."
+            },
+            "keyFile": {
+              "type": "string",
+              "description": "Path to the PKCS#8 PEM private key matching certFile.",
+              "markdownDescription": "Path to the PKCS#8 PEM private key matching `certFile`."
+            },
+            "certUrl": {
+              "type": "string",
+              "description": "Override URL to fetch the certificate chain from.",
+              "markdownDescription": "Override URL to fetch the certificate chain from."
+            },
+            "keyUrl": {
+              "type": "string",
+              "description": "Override URL to fetch the private key from.",
+              "markdownDescription": "Override URL to fetch the private key from."
+            }
+          }
         }
       }
     },
@@ -622,6 +656,14 @@
             "okhttp"
           ]
         },
+        "extraHeaders": {
+          "type": "object",
+          "description": "Additional HTTP headers to include in all requests to this provider (completions and models list fetching). Model-level extraHeaders take precedence on conflicts.",
+          "markdownDescription": "Additional HTTP headers to include in all requests to this provider (completions and models list fetching). Model-level `extraHeaders` take precedence on conflicts.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
         "retryRules": {
           "type": "array",
           "description": "Custom retry rules. Each rule can match by HTTP status code and/or error text regex pattern. When matched, the request is retried with exponential backoff.",
@@ -651,6 +693,11 @@
             ],
             "additionalProperties": false
           }
+        },
+        "rateLimitMaxWaitSeconds": {
+          "type": "integer",
+          "description": "Optional cap on how long to wait for a rate limit reset (derived from provider response headers like retry-after). Unset: ECA sleeps until the reset time and auto-resumes, showing the reset time in chat. When set and the reset is further away, ECA gives up retrying and surfaces the reset time in the error.",
+          "markdownDescription": "Optional cap on how long to wait for a rate limit reset (derived from provider response headers like `retry-after`). Unset: ECA sleeps until the reset time and auto-resumes, showing the reset time in chat. When set and the reset is further away, ECA gives up retrying and surfaces the reset time in the error."
         },
         "models": {
           "type": "object",
