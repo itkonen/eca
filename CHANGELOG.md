@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Retry transient connection failures whose nested JDK exceptions have no message, including unresolved provider addresses.
+
 ## 0.152.0
 
 - Share chat history across git worktrees of the same repo, and merge workspace cache writes from concurrent servers instead of overwriting. #558

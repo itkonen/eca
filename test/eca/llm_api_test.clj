@@ -1206,6 +1206,48 @@
       (is (false? @on-error-called*))
       (is (= "hello" @received-text*)))))
 
+(deftest async-retry-on-nested-unresolved-address-test
+  (testing "retries a post-tool ConnectException caused by UnresolvedAddressException"
+    (let [prompt-calls* (atom 0)
+          request-retries* (atom 0)
+          retry-events* (atom [])
+          errors* (atom [])
+          exception (doto (java.net.ConnectException.)
+                      (.initCause (java.nio.channels.UnresolvedAddressException.)))]
+      (with-redefs [eca.llm-api/prompt! (fn [{:keys [on-prepare-tool-call on-message-received
+                                                     on-error retry-request]}]
+                                          (swap! prompt-calls* inc)
+                                          (on-prepare-tool-call {:id "call_1"
+                                                                 :full-name "tool"
+                                                                 :arguments-text "{}"})
+                                          (retry-request
+                                           {:error-data
+                                            {:exception exception
+                                             :message (str "Could not connect: java.net.ConnectException. "
+                                                           "Check the provider URL and whether the server is reachable. "
+                                                           "Corporate networks may require HTTP_PROXY / HTTPS_PROXY env vars.")}
+                                            :attempt 0
+                                            :replay-safe? true
+                                            :on-give-up on-error
+                                            :retry-fn (fn [next-attempt]
+                                                        (is (= 1 next-attempt))
+                                                        (swap! request-retries* inc)
+                                                        (on-message-received {:type :text :text "recovered"})
+                                                        (on-message-received {:type :finish
+                                                                              :finish-reason "stop"}))}))
+                    eca.llm-api/sleep-with-cancel (fn [_ cancelled?] (not (cancelled?)))]
+        (llm-api/sync-or-async-prompt!
+         (make-prompt-opts
+          {:on-retry (fn [event] (swap! retry-events* conj event))
+           :on-error (fn [error] (swap! errors* conj error))
+           :on-prepare-tool-call identity
+           :on-message-received identity})))
+      (is (= 1 @prompt-calls*) "the completed tool turn must not be replayed")
+      (is (= 1 @request-retries*))
+      (is (= 1 (count @retry-events*)))
+      (is (= :overloaded (get-in (first @retry-events*) [:classified :error/type])))
+      (is (empty? @errors*)))))
+
 (deftest first-response-callback-is-atomic-test
   (testing "concurrent output callbacks emit first response once"
     (let [first-response-count* (atom 0)]
