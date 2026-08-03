@@ -254,6 +254,32 @@
     (is (true? (llm-providers.errors/retryable?
                 {:message "Connection error: java.nio.channels.UnresolvedAddressException"}))))
 
+  (testing "message-less nested unresolved address exception is retryable"
+    (let [exception (doto (java.net.ConnectException.)
+                      (.initCause (java.nio.channels.UnresolvedAddressException.)))]
+      (is (= {:error/type :overloaded}
+             (llm-providers.errors/classify-error
+              {:exception exception
+               :message "Could not connect: java.net.ConnectException."})))
+      (is (true? (llm-providers.errors/retryable?
+                  {:exception exception
+                   :message "Could not connect: java.net.ConnectException."})))))
+
+  (testing "walks generic exception wrappers to find transient connection failures"
+    (let [connect-exception (doto (java.net.ConnectException.)
+                              (.initCause (java.nio.channels.UnresolvedAddressException.)))
+          exception (Exception. "request failed" connect-exception)]
+      (is (= {:error/type :overloaded}
+             (llm-providers.errors/classify-error {:exception exception})))))
+
+  (testing "wrapped TLS certificate validation failure is not retryable"
+    (let [exception (Exception.
+                     "request failed"
+                     (javax.net.ssl.SSLHandshakeException. "PKIX path building failed"))]
+      (is (false? (llm-providers.errors/retryable?
+                   {:exception exception
+                    :message "TLS certificate not trusted: PKIX path building failed."})))))
+
   (testing "dropped connection message (#547) is overloaded and retryable"
     (let [error-data {:message "Connection closed unexpectedly: closed. The server, a proxy or the network dropped the connection mid-request (common behind corporate proxies/VPNs with idle or streaming timeouts)."}]
       (is (= {:error/type :overloaded}

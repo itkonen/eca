@@ -133,6 +133,21 @@
 
       :else nil)))
 
+(defn ^:private classify-by-exception
+  "Classifies transient network failures from the complete exception cause chain.
+   Some JDK HTTP exceptions have no message, so message matching alone cannot
+   reliably identify them."
+  [^Throwable exception]
+  (when (some (fn [^Throwable cause]
+                (or (instance? java.net.ConnectException cause)
+                    (instance? java.net.SocketTimeoutException cause)
+                    (instance? java.net.UnknownHostException cause)
+                    (instance? java.net.http.HttpConnectTimeoutException cause)
+                    (instance? java.nio.channels.UnresolvedAddressException cause)))
+              (->> (iterate (fn [^Throwable cause] (.getCause cause)) exception)
+                   (take-while some?)))
+    {:error/type :overloaded}))
+
 (defn ^:private classify-by-custom-rules
   "Checks user-configured retry rules. Each rule may have :status (int),
    :errorPattern (regex string, case-insensitive, matched against body, message,
@@ -184,7 +199,8 @@
          (classify-by-status-and-body error-data))
        (classify-by-message error-data)
        (when exception
-         (classify-by-message {:message (ex-message exception)}))
+         (or (classify-by-message {:message (ex-message exception)})
+             (classify-by-exception exception)))
        {:error/type :unknown})))
 
 (defn context-overflow?
