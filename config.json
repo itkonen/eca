@@ -58,8 +58,8 @@
     },
     "chatRetentionDays": {
       "type": "integer",
-      "description": "Number of days to keep old chats and tool call output cache before cleanup. Set to 0 to disable cleanup entirely.",
-      "markdownDescription": "Number of days to keep old chats and tool call output cache before cleanup. Set to `0` to disable cleanup entirely.",
+      "description": "Number of days to keep chats (since last update) and tool call output cache before cleanup. Set to 0 to disable cleanup entirely.",
+      "markdownDescription": "Number of days to keep chats (since last update) and tool call output cache before cleanup. Set to `0` to disable cleanup entirely.",
       "default": 14
     },
     "agent": {
@@ -191,6 +191,12 @@
       "description": "Timeout in seconds to wait without receiving data before considering a LLM stream stalled.",
       "markdownDescription": "Timeout in seconds to wait without receiving data before considering a LLM stream stalled.",
       "default": 120
+    },
+    "connectTimeoutSeconds": {
+      "type": "integer",
+      "description": "Timeout in seconds to establish outgoing HTTP connections (e.g. to LLM providers). Set 0 to disable. Read from file-based config only (like network settings), not initializationOptions.",
+      "markdownDescription": "Timeout in seconds to establish outgoing HTTP connections (e.g. to LLM providers). Set `0` to disable. Read from file-based config only (like network settings), not `initializationOptions`.",
+      "default": 15
     },
     "mcpServers": {
       "type": "object",
@@ -1182,7 +1188,21 @@
               "type": "integer",
               "description": "Maximum length of shell command summary.",
               "markdownDescription": "Maximum length of shell command summary.",
-              "default": 25
+              "default": 35
+            }
+          }
+        },
+        "editorNav": {
+          "type": "object",
+          "description": "Configuration for the editor LSP navigation tools (editor_definition and editor_references).",
+          "markdownDescription": "Configuration for the editor LSP navigation tools (`editor_definition` and `editor_references`).",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether to offer the editor_definition and editor_references tools when the client declares support for them.",
+              "markdownDescription": "Whether to offer the `editor_definition` and `editor_references` tools when the client declares support for them.",
+              "default": true
             }
           }
         },
