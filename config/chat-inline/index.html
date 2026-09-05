@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Configure ECA rewrite: select code, describe the change, and accept or reject the AI-generated diff.">
+        <meta name="description" content="Configure ECA inline chat: ask from any buffer and render the answer inline, backed by a regular chat.">
       
       
       
-        <link rel="canonical" href="https://eca.dev/config/rewrite/">
+        <link rel="canonical" href="https://eca.dev/config/chat-inline/">
       
       
-        <link rel="prev" href="../completion/">
+        <link rel="prev" href="../rewrite/">
       
       
-        <link rel="next" href="../chat-inline/">
+        <link rel="next" href="../context-management/">
       
       
       <link rel="icon" href="../../images/logo.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Rewrite - ECA - Editor Code Assistant</title>
+        <title>Inline chat - ECA - Editor Code Assistant</title>
       
     
     
@@ -78,9 +78,9 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Rewrite - ECA - Editor Code Assistant" />
-  <meta property="og:description" content="Configure ECA rewrite: select code, describe the change, and accept or reject the AI-generated diff." />
-  <meta property="og:url" content="https://eca.dev/config/rewrite/" />
+  <meta property="og:title" content="Inline chat - ECA - Editor Code Assistant" />
+  <meta property="og:description" content="Configure ECA inline chat: ask from any buffer and render the answer inline, backed by a regular chat." />
+  <meta property="og:url" content="https://eca.dev/config/chat-inline/" />
   <meta property="og:image" content="https://eca.dev/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -88,8 +88,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rewrite - ECA - Editor Code Assistant" />
-  <meta name="twitter:description" content="Configure ECA rewrite: select code, describe the change, and accept or reject the AI-generated diff." />
+  <meta name="twitter:title" content="Inline chat - ECA - Editor Code Assistant" />
+  <meta name="twitter:description" content="Configure ECA inline chat: ask from any buffer and render the answer inline, backed by a regular chat." />
   <meta name="twitter:image" content="https://eca.dev/images/og-image.png" />
 
   </head>
@@ -104,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rewrite" class="md-skip">
+        <a href="#inline-chat" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rewrite
+              Inline chat
             
           </span>
         </div>
@@ -971,6 +971,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../rewrite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rewrite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -983,72 +1006,7 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Rewrite
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rewrite
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#large-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Large files
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../chat-inline/" class="md-nav__link">
         
   
   
@@ -1059,6 +1017,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1340,23 +1299,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#large-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Large files
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1374,38 +1316,25 @@
   
 
 
-<h1 id="rewrite">Rewrite<a class="headerlink" href="#rewrite" title="Permanent link">#</a></h1>
-<p><img alt="" src="../../images/features/rewrite.gif" /></p>
-<p>Configure the model and system prompt used for ECA's rewrite feature via the <code>rewrite</code> config. By default, ECA follows the same model selection as chat unless overwritten:</p>
+<p><img alt="" src="../../images/features/inline-chat.gif" /></p>
+<h1 id="inline-chat">Inline chat<a class="headerlink" href="#inline-chat" title="Permanent link">#</a></h1>
+<p>Editors use the <code>chat/inlinePrompt</code> protocol method to ask ECA from any buffer and render the answer inline (e.g. an overlay near the cursor). The session is a regular chat behind the scenes: tool calls, approvals and follow-ups work as usual, and it can fork an existing chat to reuse its history as context.</p>
+<p>Configure the model, agent, and variant used for inline chats via the <code>chatInline</code> config. By default, ECA follows the same selection as chat (or the source chat when forking) unless overwritten:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="example" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="example">Example</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><span class="filename">~/.config/eca/config.json</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;rewrite&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;github-copilot/gpt-4.1&quot;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="s2">&quot;prompts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;rewrite&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;${file:/path/to/my-prompt.md}&quot;</span>
+<span class="w">  </span><span class="s2">&quot;chatInline&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;github-copilot/gpt-4.1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;agent&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;code&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;variant&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;low&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="large-files">Large files<a class="headerlink" href="#large-files" title="Permanent link">#</a></h2>
-<p>To keep the prompt size bounded, ECA caps how many lines of the target file are inlined as context. When a file exceeds <code>rewrite.fullFileMaxLines</code> (default <code>2000</code>), ECA sends a window of that many lines centered on your selection instead of the whole file. Tune it if your model has a larger or smaller context window:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="example_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="example_1">Example</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">~/.config/eca/config.json</span><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="s2">&quot;rewrite&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;fullFileMaxLines&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4000</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-</div>
-</div>
+<p><code>model</code> and <code>variant</code> apply when the inline chat is created (explicit client choice &gt; <code>chatInline</code> config &gt; source chat &gt; default) and stick to the chat afterwards. <code>agent</code> applies to every inline prompt where the client doesn't specify one.</p>
 
 
 
@@ -1457,22 +1386,22 @@
   
   <nav class="md-footer__inner md-grid" aria-label="Footer" >
     
-    <a href="../completion/" class="md-footer__link md-footer__link--prev">
+    <a href="../rewrite/" class="md-footer__link md-footer__link--prev">
       <div class="md-footer__button md-icon">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </div>
       <div class="md-footer__title">
         <span class="md-footer__direction">Previous</span>
-        <span class="md-ellipsis">Completion</span>
+        <span class="md-ellipsis">Rewrite</span>
       </div>
     </a>
     
     
-    <a href="../chat-inline/" class="md-footer__link md-footer__link--next">
+    <a href="../context-management/" class="md-footer__link md-footer__link--next">
       <div class="md-footer__title">
         <span class="md-footer__direction">Next</span>
-        <span class="md-ellipsis">Inline chat</span>
+        <span class="md-ellipsis">Context Management</span>
       </div>
       <div class="md-footer__button md-icon">
         
