@@ -119,6 +119,9 @@
         "type": "string"
       }
     },
+    "mcpToolSearch": {
+      "$ref": "#/definitions/mcpToolSearch"
+    },
     "commands": {
       "type": "array",
       "description": "Custom command prompt files.",
@@ -221,6 +224,12 @@
       "minimum": 0,
       "maximum": 100,
       "default": 75
+    },
+    "autoCompactTokensLeft": {
+      "type": "integer",
+      "description": "Remaining context tokens (model context limit minus used tokens) at or below which auto-compact triggers. Takes precedence over autoCompactPercentage, which is only used as fallback when this value is not smaller than the model context limit. Useful when switching between models with very different context sizes.",
+      "markdownDescription": "Remaining context tokens (model context limit minus used tokens) at or below which auto-compact triggers. Takes precedence over `autoCompactPercentage`, which is only used as fallback when this value is not smaller than the model context limit. Useful when switching between models with very different context sizes.",
+      "minimum": 1
     },
     "includeParentAgentsFiles": {
       "type": "boolean",
@@ -402,8 +411,8 @@
     },
     "plugins": {
       "type": "object",
-      "description": "Plugin system for loading external configuration from git repos or local paths. Each key (except 'install') is a named plugin source with a 'source' URL or path. 'install' lists plugin names to install from any registered source.",
-      "markdownDescription": "Plugin system for loading external configuration from git repos or local paths. Each key (except `install`) is a named plugin source with a `source` URL or path. `install` lists plugin names to install from any registered source.",
+      "description": "Plugin system for loading external configuration from git repos or local paths. Each key except 'install' and 'installMode' is a named plugin source with a 'source' URL or path.",
+      "markdownDescription": "Plugin system for loading external configuration from git repos or local paths. Each key except `install` and `installMode` is a named plugin source with a `source` URL or path.",
       "examples": [
         {
           "my-org": {
@@ -413,10 +422,17 @@
         }
       ],
       "properties": {
+        "installMode": {
+          "type": "string",
+          "enum": ["append", "replace"],
+          "default": "append",
+          "description": "Use 'replace' so this file's 'install' list stands alone instead of combining with lists from other config sources. Applies only within the same file.",
+          "markdownDescription": "Use `replace` so this file's `install` list stands alone instead of combining with lists from other config sources. Applies only within the same file."
+        },
         "install": {
           "type": "array",
-          "description": "List of plugin names to install from registered sources.",
-          "markdownDescription": "List of plugin names to install from registered sources.",
+          "description": "List of plugins to install: 'name' or 'name@source'. Lists from all config sources are combined, not replaced.",
+          "markdownDescription": "List of plugins to install: `name` or `name@source`. Lists from all config sources are combined, not replaced.",
           "items": {
             "type": "string"
           }
@@ -993,12 +1009,21 @@
             "type": "string"
           }
         },
+        "mcpToolSearch": {
+          "$ref": "#/definitions/mcpToolSearch"
+        },
         "autoCompactPercentage": {
           "type": "integer",
           "description": "Context window usage percentage at which auto-compact triggers for this agent.",
           "markdownDescription": "Context window usage percentage at which auto-compact triggers for this agent.",
           "minimum": 0,
           "maximum": 100
+        },
+        "autoCompactTokensLeft": {
+          "type": "integer",
+          "description": "Remaining context tokens at or below which auto-compact triggers for this agent. Takes precedence over autoCompactPercentage.",
+          "markdownDescription": "Remaining context tokens at or below which auto-compact triggers for this agent. Takes precedence over `autoCompactPercentage`.",
+          "minimum": 1
         },
         "toolCall": {
           "$ref": "#/definitions/toolCallConfig"
@@ -1175,6 +1200,41 @@
             }
           },
           "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "mcpToolSearch": {
+      "type": "object",
+      "description": "Keeps matching MCP tools out of the LLM context until it loads them with the eca__search_tools tool. Deferred tools are still listed by name and short description in the system prompt. ECA native tools are never deferred.",
+      "markdownDescription": "Keeps matching MCP tools out of the LLM context until it loads them with the `eca__search_tools` tool. Deferred tools are still listed by name and short description in the system prompt. ECA native tools are never deferred.",
+      "properties": {
+        "deferAllWhenTotalTokensExceedPercentOfContext": {
+          "type": ["number", "null"],
+          "description": "Percentage of the model context window the MCP tool definitions may take before all of them are put behind the search tool. For example 10 defers them once they exceed 10% of the context window. Null (the default) never defers automatically, leaving includePattern in control.",
+          "markdownDescription": "Percentage of the model context window the MCP tool definitions may take before all of them are put behind the search tool. For example `10` defers them once they exceed 10% of the context window. `null` (the default) never defers automatically, leaving `includePattern` in control.",
+          "default": null,
+          "minimum": 0,
+          "maximum": 100,
+          "examples": [10, 5]
+        },
+        "includePattern": {
+          "type": "array",
+          "description": "MCP tools to put behind the search tool regardless of deferAllWhenTotalTokensExceedPercentOfContext. Each entry matches an exact MCP server name (all its tools) or an anchored regex against the tool full name server__tool.",
+          "markdownDescription": "MCP tools to put behind the search tool regardless of `deferAllWhenTotalTokensExceedPercentOfContext`. Each entry matches an exact MCP server name (all its tools) or an anchored regex against the tool full name `server__tool`.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [[".*"], ["some-mcp__.*"]]
+        },
+        "excludePattern": {
+          "type": "array",
+          "description": "MCP tools to keep loaded, taking precedence over both deferAllWhenTotalTokensExceedPercentOfContext and includePattern. Same matching as includePattern.",
+          "markdownDescription": "MCP tools to keep loaded, taking precedence over both `deferAllWhenTotalTokensExceedPercentOfContext` and `includePattern`. Same matching as `includePattern`.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["some-mcp"], ["some-mcp__.*"]]
         }
       },
       "additionalProperties": false
