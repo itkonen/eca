@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Install ECA in your editor (Emacs, VS Code, Neovim, IntelliJ), as a Desktop app, or manually via script, Homebrew, mise, or GitHub Releases.">
+        <meta name="description" content="Install ECA in your editor (Emacs, VS Code, Neovim, IntelliJ), as a Desktop app or terminal CLI, or manually via script, Homebrew, mise, or GitHub Releases.">
       
       
       
         <link rel="canonical" href="https://eca.dev/install/">
       
       
-        <link rel="prev" href="../read-chat/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../config/introduction/">
+        <link rel="next" href="../features/">
       
       
       <link rel="icon" href="../images/logo.svg">
@@ -47,7 +47,7 @@
       
     
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=fallback">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=fallback">
     
       <link rel="stylesheet" href="../stylesheets/layout.css">
     
@@ -76,7 +76,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Install ECA" />
-<meta property="og:description" content="Install ECA in your editor (Emacs, VS Code, Neovim, IntelliJ), as a Desktop app, or manually via script, Homebrew, mise, or GitHub Releases." />
+<meta property="og:description" content="Install ECA in your editor (Emacs, VS Code, Neovim, IntelliJ), as a Desktop app or terminal CLI, or manually via script, Homebrew, mise, or GitHub Releases." />
 <meta property="og:url" content="https://eca.dev/install/" />
 <meta property="og:image" content="https://eca.dev/images/og-image.png" />
 <meta property="og:image:width" content="1200" />
@@ -86,11 +86,11 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Install ECA" />
-<meta name="twitter:description" content="Install ECA in your editor (Emacs, VS Code, Neovim, IntelliJ), as a Desktop app, or manually via script, Homebrew, mise, or GitHub Releases." />
+<meta name="twitter:description" content="Install ECA in your editor (Emacs, VS Code, Neovim, IntelliJ), as a Desktop app or terminal CLI, or manually via script, Homebrew, mise, or GitHub Releases." />
 <meta name="twitter:image" content="https://eca.dev/images/og-image.png" />
 
 <!-- Additional SEO -->
-<meta name="keywords" content="ECA install, Editor Code Assistant install, VS Code, Emacs, Neovim, IntelliJ, Desktop, Homebrew, mise, install script, AI pair programming" />
+<meta name="keywords" content="ECA install, Editor Code Assistant install, VS Code, Emacs, Neovim, IntelliJ, Desktop, CLI, terminal, Homebrew, mise, install script, AI pair programming" />
 <link rel="canonical" href="https://eca.dev/install/" />
 
 <style>
@@ -98,12 +98,12 @@
    * ECA Install Page Styles
    * ──────────────────────────
    * 1. Custom Properties (light + dark)
-   * 2. Page Chrome Reset
    * 3. Hero
    * 4. Picker (cards + panels)
    * 5. Manual sub-tabs
    * 6. Help footer
    * 7. Responsive
+   * 8. Docs column
    */
 
   /* ── 1. Custom Properties ── */
@@ -159,17 +159,6 @@
     --eca-code-bg: #0a0a16;
   }
 
-  /* ── 2. Page Chrome Reset ── */
-  .md-main__inner { margin-top: 0; }
-  .md-content__inner { padding: 0; margin: 0; }
-  .md-content { max-width: none; margin: 0; }
-  .md-main .md-main__inner.md-grid { max-width: none; padding: 0; }
-  .md-content__inner::before { display: none; }
-  article.md-content__inner { padding: 0; }
-
-  @media (max-width: 76.1875em) {
-    .md-sidebar--primary { display: block; }
-  }
 
   /* ── 3. Intro block (replaces the old dark hero) ── */
   .eca-install-intro {
@@ -235,16 +224,6 @@
     pointer-events: none;
   }
 
-  /* Matches the h1 on doc pages (layout.css) */
-  .eca-install-picker__question {
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.3;
-    color: var(--eca-heading-fg-color);
-    margin: 0.5rem 0 1.75rem;
-  }
-
   /* Primary tab bar (horizontal, underline-style active indicator) */
   .eca-install-tabs {
     display: flex;
@@ -288,6 +267,7 @@
   #eca-install-neovim:checked   ~ .eca-install-tabs label[for="eca-install-neovim"],
   #eca-install-intellij:checked ~ .eca-install-tabs label[for="eca-install-intellij"],
   #eca-install-desktop:checked  ~ .eca-install-tabs label[for="eca-install-desktop"],
+  #eca-install-cli:checked      ~ .eca-install-tabs label[for="eca-install-cli"],
   #eca-manual-script:checked    ~ .eca-install-subtabs label[for="eca-manual-script"],
   #eca-manual-brew:checked      ~ .eca-install-subtabs label[for="eca-manual-brew"],
   #eca-manual-mise:checked      ~ .eca-install-subtabs label[for="eca-manual-mise"],
@@ -316,7 +296,8 @@
   #eca-install-vscode:checked   ~ .eca-install-panels .eca-install-panel--vscode,
   #eca-install-neovim:checked   ~ .eca-install-panels .eca-install-panel--neovim,
   #eca-install-intellij:checked ~ .eca-install-panels .eca-install-panel--intellij,
-  #eca-install-desktop:checked  ~ .eca-install-panels .eca-install-panel--desktop {
+  #eca-install-desktop:checked  ~ .eca-install-panels .eca-install-panel--desktop,
+  #eca-install-cli:checked      ~ .eca-install-panels .eca-install-panel--cli {
     display: block;
   }
 
@@ -984,10 +965,6 @@
       padding: 1rem 1rem 2.5rem;
     }
 
-    .eca-install-picker__question {
-      font-size: 1.55rem;
-    }
-
     .eca-install-tabs {
       /* On narrow screens the tabs can wrap to multiple lines — keep the
          underline indicator consistent and compact. */
@@ -1063,6 +1040,78 @@
     }
 
   }
+  /* ── 8. Docs column ──
+     The page sits in Material's content column between the two
+     sidebars, like other doc pages. These rules undo the full-width
+     layout: no side padding or gray bands, tabs sized to fit the
+     column, code blocks that scroll inside it, and button links that
+     keep their own colors instead of the doc link style */
+  .eca-install-intro,
+  .eca-install-picker,
+  .eca-install-advanced,
+  .eca-install-help {
+    padding-inline: 0;
+    background: none;
+  }
+
+  .eca-install-intro {
+    padding-top: 0;
+  }
+
+  .eca-install-intro__callout {
+    padding-right: 1rem;
+  }
+
+  .eca-install-tab {
+    padding-inline: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .eca-install-panels,
+  .eca-install-subpanels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .md-typeset a.eca-install-download__link {
+    color: var(--eca-text);
+    text-decoration: none;
+  }
+
+  .md-typeset a.eca-install-download__link:hover {
+    color: var(--eca-brand);
+  }
+
+  .md-typeset a.eca-install-btn--primary,
+  .md-typeset a.eca-install-btn--primary:hover,
+  .md-typeset a.eca-install-download__link--primary,
+  .md-typeset a.eca-install-download__link--primary:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Material's .md-typeset heading margins are more specific than the
+     heading classes above. Restore the margins this page was laid out
+     with. Sizes follow the doc heading scale in layout.css, so the
+     question below the "Install ECA" title reads as a doc h2 */
+  .md-typeset .eca-install-picker__question {
+    margin: 0.5rem 0 1.75rem;
+  }
+
+  .md-typeset .eca-install-panel__title {
+    margin: 0 0 1.35rem;
+  }
+
+  .md-typeset .eca-install-advanced__label h3 {
+    margin: 0;
+  }
+
+  .md-typeset .eca-install-help__title {
+    margin: 0 0 0.5rem;
+  }
+
+  .md-typeset .eca-install-coming-soon__title {
+    margin: 0 0 0.35rem;
+  }
 </style>
 
   </head>
@@ -1075,6 +1124,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#where" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1177,7 +1231,6 @@
     <div class="md-container" data-md-component="container">
       
       
-  
         
           
             
@@ -1190,38 +1243,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
-          
-  
-  
-  Home
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
-  
-  
     
-    
-      <li class="md-tabs__item">
-        <a href="../features/" class="md-tabs__link">
-          
   
-  
-  Features
+  Home
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -1239,27 +1271,7 @@
           
   
   
-  Install
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../config/introduction/" class="md-tabs__link">
-          
-  
-  
-  Configuration
+  Documentation
 
         </a>
       </li>
@@ -1273,7 +1285,45 @@
   
   
     <li class="md-tabs__item">
-      <a href="../protocol/" class="md-tabs__link">
+      <a href="/install/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="/config/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="/protocol/" class="md-tabs__link">
         
   
   
@@ -1292,7 +1342,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../troubleshooting/" class="md-tabs__link">
+      <a href="/troubleshooting/" class="md-tabs__link">
         
   
   
@@ -1349,612 +1399,12 @@
           
         
       
-
-  
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  
-
-  <!-- ── Intro (compact, light-themed; replaces the old dark hero) ── -->
-  <section class="eca-install-intro">
-    <div class="eca-install-intro__inner">
-      <p class="eca-install-intro__note">
-        ECA is written in Clojure and compiled into a native binary via GraalVM.
-      </p>
-      <div class="eca-install-intro__callout">
-        <span class="eca-install-intro__callout-icon"><!-- @license lucide-static v1.57.0 - ISC -->
-<svg
-  class="lucide lucide-info"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <circle cx="12" cy="12" r="10" />
-  <path d="M12 16v-4" />
-  <path d="M12 8h.01" />
-</svg></span>
-        <div>
-          <strong>Auto install</strong> &mdash; ECA is already downloaded and updated automatically
-          by all official editor plugins, so you don't need to handle it manually. The tabs
-          below are only for users who want to install ECA themselves.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Picker ── -->
-  <section class="eca-install-picker">
-    <div class="eca-install-picker__inner">
-      <h1 class="eca-install-picker__question">Where do you want to use ECA?</h1>
-
-      <!-- Hidden radios drive the CSS-only reveal. The hash-sync script below
-           keeps window.location.hash in sync so tabs are shareable links. -->
-      <input type="radio" name="eca-install" id="eca-install-emacs" checked>
-      <input type="radio" name="eca-install" id="eca-install-vscode">
-      <input type="radio" name="eca-install" id="eca-install-neovim">
-      <input type="radio" name="eca-install" id="eca-install-intellij">
-      <input type="radio" name="eca-install" id="eca-install-desktop">
-
-      <div class="eca-install-tabs" role="tablist">
-        <label for="eca-install-emacs"    class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 24C5.448 24 .118 18.617.118 12S5.448 0 12 0c6.552 0 11.882 5.383 11.882 12S18.552 24 12 24m0-23.339C5.813.661.779 5.748.779 12s5.034 11.339 11.221 11.339c6.187 0 11.221-5.086 11.221-11.339S18.187.661 12 .661M8.03 20.197s.978.069 2.236-.042c.51-.045 2.444-.235 3.891-.552 0 0 1.764-.377 2.707-.725.987-.364 1.524-.673 1.766-1.11-.011-.09.074-.408-.381-.599-1.164-.488-2.514-.4-5.185-.457-2.962-.102-3.948-.598-4.472-.997-.503-.405-.25-1.526 1.907-2.513 1.086-.526 5.345-1.496 5.345-1.496-1.434-.709-4.109-1.955-4.659-2.224-.482-.236-1.254-.591-1.421-1.021-.19-.413.448-.768.804-.87 1.147-.331 2.766-.536 4.24-.56.741-.012.861-.059.861-.059 1.022-.17 1.695-.869 1.414-1.976-.252-1.13-1.579-1.795-2.84-1.565-1.188.217-4.05 1.048-4.05 1.048 3.539-.031 4.131.028 4.395.398.156.218-.071.518-1.015.672-1.027.168-3.163.37-3.163.37-2.049.122-3.492.13-3.925 1.046-.282.57.303 1.1.559 1.431 1.082 1.204 2.646 1.853 3.652 2.331.379.18 1.49.52 1.49.52-3.265-.18-5.619.823-7.001 1.977-1.562 1.445-.871 3.168 2.33 4.228 1.891.626 2.828.921 5.648.667 1.661-.09 1.923-.036 1.939.1.023.192-1.845.669-2.355.816-1.298.374-4.699 1.129-4.716 1.133z"/></svg>    Emacs</label>
-        <label for="eca-install-vscode"   class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M17.583 2.006l-4.45 4.164L7.29 1.57 2.07 4.122v15.756L7.29 22.43l5.843-4.6 4.45 4.164L21.93 19.2V4.8l-4.347-2.794zM7.29 14.768V9.232L10.824 12 7.29 14.768zm10.293 2.674L13.99 12l3.593-5.442v10.884z"/></svg>   VS Code</label>
-        <label for="eca-install-neovim"   class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M2.214 4.954v13.615L7.2 24V10.314L14.863 19.6h.075l4.848-5.37V2.086l-4.985 5.2V0z"/></svg>   Neovim</label>
-        <label for="eca-install-intellij" class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm1.5 1.5v15h15v-15h-15zM5.25 18h7.5v1.5h-7.5V18zm0-2.25h4.5V17.25h-4.5V15.75zM5.25 6h1.5v6h-1.5V6zm3 0h3.75c1.6 0 2.62 1.12 2.62 2.62 0 1.5-1.05 2.63-2.62 2.63H9.75V12h-1.5V6zm1.5 1.35v2.55h2.1c.68 0 1.2-.47 1.2-1.27 0-.83-.52-1.28-1.2-1.28H9.75z"/></svg> IntelliJ</label>
-        <label for="eca-install-desktop"  class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/></svg>  Desktop</label>
-      </div>
-
-      <div class="eca-install-panels">
-        <div class="eca-install-panel eca-install-panel--emacs">
-      <div class="eca-install-panel__body">
-        <h3 class="eca-install-panel__title">
-          <svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 24C5.448 24 .118 18.617.118 12S5.448 0 12 0c6.552 0 11.882 5.383 11.882 12S18.552 24 12 24m0-23.339C5.813.661.779 5.748.779 12s5.034 11.339 11.221 11.339c6.187 0 11.221-5.086 11.221-11.339S18.187.661 12 .661M8.03 20.197s.978.069 2.236-.042c.51-.045 2.444-.235 3.891-.552 0 0 1.764-.377 2.707-.725.987-.364 1.524-.673 1.766-1.11-.011-.09.074-.408-.381-.599-1.164-.488-2.514-.4-5.185-.457-2.962-.102-3.948-.598-4.472-.997-.503-.405-.25-1.526 1.907-2.513 1.086-.526 5.345-1.496 5.345-1.496-1.434-.709-4.109-1.955-4.659-2.224-.482-.236-1.254-.591-1.421-1.021-.19-.413.448-.768.804-.87 1.147-.331 2.766-.536 4.24-.56.741-.012.861-.059.861-.059 1.022-.17 1.695-.869 1.414-1.976-.252-1.13-1.579-1.795-2.84-1.565-1.188.217-4.05 1.048-4.05 1.048 3.539-.031 4.131.028 4.395.398.156.218-.071.518-1.015.672-1.027.168-3.163.37-3.163.37-2.049.122-3.492.13-3.925 1.046-.282.57.303 1.1.559 1.431 1.082 1.204 2.646 1.853 3.652 2.331.379.18 1.49.52 1.49.52-3.265-.18-5.619.823-7.001 1.977-1.562 1.445-.871 3.168 2.33 4.228 1.891.626 2.828.921 5.648.667 1.661-.09 1.923-.036 1.939.1.023.192-1.845.669-2.355.816-1.298.374-4.699 1.129-4.716 1.133z"/></svg>
-          ECA in Emacs
-        </h3>
-        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
-          The <strong>eca-emacs</strong> plugin bundles and keeps the ECA binary up-to-date
-          automatically.
-        </p>
-        <p class="eca-install-panel__desc">
-          Install the plugin for Emacs and you're done. No separate server install is needed.
-        </p>
-        <a href="https://github.com/editor-code-assistant/eca-emacs" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
-          Install eca-emacs plugin
-          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
-        </a>
-        <span class="eca-install-panel__meta">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Auto-downloads the ECA server on first launch
-        </span>
-      </div>
-    </div>
-        <div class="eca-install-panel eca-install-panel--vscode">
-      <div class="eca-install-panel__body">
-        <h3 class="eca-install-panel__title">
-          <svg viewBox="0 0 24 24"><path d="M17.583 2.006l-4.45 4.164L7.29 1.57 2.07 4.122v15.756L7.29 22.43l5.843-4.6 4.45 4.164L21.93 19.2V4.8l-4.347-2.794zM7.29 14.768V9.232L10.824 12 7.29 14.768zm10.293 2.674L13.99 12l3.593-5.442v10.884z"/></svg>
-          ECA in VS Code
-        </h3>
-        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
-          The <strong>eca-vscode</strong> plugin bundles and keeps the ECA binary up-to-date
-          automatically.
-        </p>
-        <p class="eca-install-panel__desc">
-          Install the plugin for VS Code and you're done. No separate server install is needed.
-        </p>
-        <a href="https://github.com/editor-code-assistant/eca-vscode" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
-          Install eca-vscode plugin
-          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
-        </a>
-        <span class="eca-install-panel__meta">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Auto-downloads the ECA server on first launch
-        </span>
-      </div>
-    </div>
-        <div class="eca-install-panel eca-install-panel--neovim">
-      <div class="eca-install-panel__body">
-        <h3 class="eca-install-panel__title">
-          <svg viewBox="0 0 24 24"><path d="M2.214 4.954v13.615L7.2 24V10.314L14.863 19.6h.075l4.848-5.37V2.086l-4.985 5.2V0z"/></svg>
-          ECA in Neovim
-        </h3>
-        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
-          The <strong>eca-nvim</strong> plugin bundles and keeps the ECA binary up-to-date
-          automatically.
-        </p>
-        <p class="eca-install-panel__desc">
-          Install the plugin for Neovim and you're done. No separate server install is needed.
-        </p>
-        <a href="https://github.com/editor-code-assistant/eca-nvim" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
-          Install eca-nvim plugin
-          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
-        </a>
-        <span class="eca-install-panel__meta">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Auto-downloads the ECA server on first launch
-        </span>
-      </div>
-    </div>
-        <div class="eca-install-panel eca-install-panel--intellij">
-      <div class="eca-install-panel__body">
-        <h3 class="eca-install-panel__title">
-          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm1.5 1.5v15h15v-15h-15zM5.25 18h7.5v1.5h-7.5V18zm0-2.25h4.5V17.25h-4.5V15.75zM5.25 6h1.5v6h-1.5V6zm3 0h3.75c1.6 0 2.62 1.12 2.62 2.62 0 1.5-1.05 2.63-2.62 2.63H9.75V12h-1.5V6zm1.5 1.35v2.55h2.1c.68 0 1.2-.47 1.2-1.27 0-.83-.52-1.28-1.2-1.28H9.75z"/></svg>
-          ECA in IntelliJ
-        </h3>
-        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
-          The <strong>eca-intellij</strong> plugin bundles and keeps the ECA binary up-to-date
-          automatically.
-        </p>
-        <p class="eca-install-panel__desc">
-          Install the plugin for IntelliJ and you're done. No separate server install is needed.
-        </p>
-        <a href="https://github.com/editor-code-assistant/eca-intellij" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
-          Install eca-intellij plugin
-          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
-        </a>
-        <span class="eca-install-panel__meta">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Auto-downloads the ECA server on first launch
-        </span>
-      </div>
-    </div>
-        <!-- Desktop panel: direct GitHub Release download, with Linux/macOS/Windows tabs. -->
-        <div class="eca-install-panel eca-install-panel--desktop">
-          <div class="eca-install-panel__body">
-            <h3 class="eca-install-panel__title">
-              <svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/></svg>
-              ECA Desktop
-            </h3>
-            <p class="eca-install-panel__desc">
-              A standalone desktop app for ECA, built with Electron. Download the latest
-              release for your platform directly from
-              <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
-              &mdash; the ECA server is bundled, and supported formats auto-update in place.
-            </p>
-
-            <div class="eca-install-os" id="eca-desktop-os">
-              <input type="radio" name="eca-desktop-os" id="eca-desktop-os-linux" checked>
-              <input type="radio" name="eca-desktop-os" id="eca-desktop-os-mac">
-              <input type="radio" name="eca-desktop-os" id="eca-desktop-os-windows">
-
-              <div class="eca-install-os__tabs">
-                <label for="eca-desktop-os-linux" class="eca-install-os__tab">
-                  <svg viewBox="0 0 24 24"><path d="M12.504 2.004c-1.657 0-3 1.77-3 3.95 0 1.137.346 2.16.908 2.88-.673.517-1.507 1.06-2.254 1.635-.905.696-1.736 1.458-2.352 2.287-.615.83-1.066 1.765-1.066 2.8 0 1.15.836 2.5 2 2.5.62 0 1.005-.41 1.242-.88.34.49 1 .88 1.758.88.647 0 1.215-.25 1.66-.64.445.39 1.013.64 1.66.64.647 0 1.215-.25 1.66-.64.445.39 1.013.64 1.66.64.758 0 1.418-.39 1.758-.88.237.47.622.88 1.242.88 1.164 0 2-1.35 2-2.5 0-1.035-.451-1.97-1.066-2.8-.616-.829-1.447-1.591-2.352-2.287-.747-.575-1.581-1.118-2.254-1.635.562-.72.908-1.743.908-2.88 0-2.18-1.343-3.95-3-3.95zm-1.25 4.25a.8.8 0 0 1 .8.8.8.8 0 0 1-.8.8.8.8 0 0 1-.8-.8.8.8 0 0 1 .8-.8zm2.5 0a.8.8 0 0 1 .8.8.8.8 0 0 1-.8.8.8.8 0 0 1-.8-.8.8.8 0 0 1 .8-.8zM12 8.75c1.1 0 2.25.6 2.25 1.5 0 .45-.35.85-.85 1.15-.4.25-.9.4-1.4.4-.5 0-1-.15-1.4-.4-.5-.3-.85-.7-.85-1.15 0-.9 1.15-1.5 2.25-1.5z"/></svg>
-                  Linux
-                </label>
-                <label for="eca-desktop-os-mac" class="eca-install-os__tab">
-                  <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                  macOS
-                </label>
-                <label for="eca-desktop-os-windows" class="eca-install-os__tab">
-                  <svg viewBox="0 0 24 24"><path d="M3 5.48L10.87 4.4v7.6H3V5.48zM3 18.52L10.87 19.6V12H3v6.52zm8.83 1.22L22 20.94V12h-10.17v7.74zm0-15.48V12H22V3.06l-10.17 1.2z"/></svg>
-                  Windows
-                </label>
-              </div>
-
-              <div class="eca-install-os__panels">
-                <!-- Linux: arch picker + per-arch downloads -->
-                <div class="eca-install-os__panel eca-install-os__panel--linux">
-                  <div class="eca-install-arch">
-                    <!-- HTML default: Linux x64 (most common); JS upgrades to arm64 on detection. -->
-                    <input type="radio" name="eca-desktop-arch-linux" id="eca-desktop-arch-linux-x64" checked>
-                    <input type="radio" name="eca-desktop-arch-linux" id="eca-desktop-arch-linux-arm64">
-
-                    <div class="eca-install-arch__toggle">
-                      <label for="eca-desktop-arch-linux-x64" class="eca-install-arch__segment">
-                        <span class="eca-install-arch__segment-title">x86_64</span>
-                        <span class="eca-install-arch__segment-sub">Intel / AMD</span>
-                      </label>
-                      <label for="eca-desktop-arch-linux-arm64" class="eca-install-arch__segment">
-                        <span class="eca-install-arch__segment-title">arm64</span>
-                        <span class="eca-install-arch__segment-sub">aarch64 · ARM</span>
-                      </label>
-                    </div>
-
-                    <div class="eca-install-arch__downloads">
-                      <div class="eca-install-arch__download eca-install-arch__download--linux-x64">
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-x86_64.AppImage"
-                           class="eca-install-download__link eca-install-download__link--primary"
-                           target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> AppImage
-                          <span class="eca-install-download__tag">Recommended</span>
-                        </a>
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-amd64.deb"
-                           class="eca-install-download__link" target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .deb
-                        </a>
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-x86_64.flatpak"
-                           class="eca-install-download__link" target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Flatpak
-                        </a>
-                      </div>
-                      <div class="eca-install-arch__download eca-install-arch__download--linux-arm64">
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-arm64.AppImage"
-                           class="eca-install-download__link eca-install-download__link--primary"
-                           target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> AppImage
-                          <span class="eca-install-download__tag">Recommended</span>
-                        </a>
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-arm64.deb"
-                           class="eca-install-download__link" target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .deb
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="eca-install-note">
-                    <strong>AppImage</strong> is the recommended format &mdash; it auto-updates
-                    in place via <code>electron-updater</code>. <strong>.deb</strong> does
-                    <em>not</em> auto-update; upgrade by downloading a fresh <code>.deb</code>
-                    when a new release ships. <strong>Flatpak</strong> (x86_64) runs the app
-                    sandboxed &mdash; install with
-                    <code>flatpak install --user eca-linux-x86_64.flatpak</code>, upgrade by
-                    installing a fresh bundle. In every format the managed <code>eca</code>
-                    server keeps auto-updating on its own.
-                  </p>
-                </div>
-
-                <!-- macOS: arch picker + per-arch downloads -->
-                <div class="eca-install-os__panel eca-install-os__panel--mac">
-                  <div class="eca-install-arch">
-                    <!-- HTML default: Apple Silicon (majority of modern Macs); JS may override to x64. -->
-                    <input type="radio" name="eca-desktop-arch-mac" id="eca-desktop-arch-mac-arm64" checked>
-                    <input type="radio" name="eca-desktop-arch-mac" id="eca-desktop-arch-mac-x64">
-
-                    <div class="eca-install-arch__toggle">
-                      <label for="eca-desktop-arch-mac-arm64" class="eca-install-arch__segment">
-                        <span class="eca-install-arch__segment-title">Apple Silicon</span>
-                        <span class="eca-install-arch__segment-sub">arm64 · M1–M4</span>
-                      </label>
-                      <label for="eca-desktop-arch-mac-x64" class="eca-install-arch__segment">
-                        <span class="eca-install-arch__segment-title">Intel</span>
-                        <span class="eca-install-arch__segment-sub">x86_64</span>
-                      </label>
-                    </div>
-
-                    <div class="eca-install-arch__downloads">
-                      <div class="eca-install-arch__download eca-install-arch__download--mac-arm64">
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-arm64.dmg"
-                           class="eca-install-download__link eca-install-download__link--primary"
-                           target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .dmg
-                          <span class="eca-install-download__tag">Recommended</span>
-                        </a>
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-arm64.zip"
-                           class="eca-install-download__link" target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .zip
-                        </a>
-                      </div>
-                      <div class="eca-install-arch__download eca-install-arch__download--mac-x64">
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-x64.dmg"
-                           class="eca-install-download__link eca-install-download__link--primary"
-                           target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .dmg
-                          <span class="eca-install-download__tag">Recommended</span>
-                        </a>
-                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-x64.zip"
-                           class="eca-install-download__link" target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .zip
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="eca-install-note">
-                    Both <strong>.dmg</strong> and <strong>.zip</strong> auto-update in place
-                    via <code>electron-updater</code>. If macOS Gatekeeper blocks the app on
-                    first launch (unsigned builds), right-click the app in
-                    <em>Applications</em> and choose <strong>Open</strong>.
-                  </p>
-                </div>
-
-                <!-- Windows -->
-                <div class="eca-install-os__panel eca-install-os__panel--windows">
-                  <div class="eca-install-coming-soon">
-                    <div class="eca-install-coming-soon__emoji"><!-- @license lucide-static v1.57.0 - ISC -->
-<svg
-  class="lucide lucide-wand-sparkles"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72" />
-  <path d="m14 7 3 3" />
-  <path d="M5 6v4" />
-  <path d="M19 14v4" />
-  <path d="M10 2v2" />
-  <path d="M7 8H3" />
-  <path d="M21 16h-4" />
-  <path d="M11 3H9" />
-</svg></div>
-                    <h4 class="eca-install-coming-soon__title">Windows builds are planned</h4>
-                    <p class="eca-install-coming-soon__desc">
-                      Native Windows installers aren't shipping yet. In the meantime, you can
-                      run ECA through the VS Code or IntelliJ plugin on Windows, or build
-                      from source.
-                    </p>
-                    <a href="https://github.com/editor-code-assistant/eca-desktop"
-                       class="eca-install-btn eca-install-btn--primary"
-                       target="_blank" rel="noopener">
-                      Watch eca-desktop on GitHub
-                      <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <p class="eca-install-panel__footer-note">
-              <a href="https://github.com/editor-code-assistant/eca-desktop/releases" target="_blank" rel="noopener">
-                Browse all Desktop releases on GitHub &rarr;
-              </a>
-            </p>
-          </div>
-        </div>
-
-        <!--
-          Install page scripts:
-          1. Primary tab URL-hash sync (shareable links like /install/#neovim).
-          2. Desktop-panel OS auto-detect (matching radio gets `checked` on load).
-          Both fail silently if JS is disabled — HTML `checked` attributes are the fallback.
-        -->
-        <script>
-          (function () {
-            var PRIMARY_TABS = ['emacs', 'vscode', 'neovim', 'intellij', 'desktop'];
-
-            // ── 1. Primary tab ↔ URL hash sync ──
-            function applyHashToPrimaryTab() {
-              var hash = (window.location.hash || '').replace('#', '').toLowerCase();
-              if (PRIMARY_TABS.indexOf(hash) === -1) return;
-              var radio = document.getElementById('eca-install-' + hash);
-              if (radio) radio.checked = true;
-            }
-
-            try { applyHashToPrimaryTab(); } catch (_e) {}
-
-            // Re-sync on back/forward navigation
-            window.addEventListener('hashchange', function () {
-              try { applyHashToPrimaryTab(); } catch (_e) {}
-            });
-
-            // Update the URL hash when the user clicks a tab, without
-            // polluting browser history or triggering a scroll jump.
-            PRIMARY_TABS.forEach(function (tab) {
-              var radio = document.getElementById('eca-install-' + tab);
-              if (!radio) return;
-              radio.addEventListener('change', function () {
-                if (!radio.checked) return;
-                try {
-                  if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, '', '#' + tab);
-                  } else {
-                    window.location.hash = tab;
-                  }
-                } catch (_e) {}
-              });
-            });
-
-            // ── 2. Desktop panel: auto-select OS based on user-agent ──
-            try {
-              var ua = (navigator.userAgent || navigator.platform || '').toLowerCase();
-              var osId = null;
-              if (/mac|darwin|iphone|ipad/.test(ua))         osId = 'eca-desktop-os-mac';
-              else if (/win/.test(ua))                        osId = 'eca-desktop-os-windows';
-              else if (/linux|x11|bsd|android|cros/.test(ua)) osId = 'eca-desktop-os-linux';
-              if (osId) {
-                var osEl = document.getElementById(osId);
-                if (osEl) osEl.checked = true;
-              }
-            } catch (_e) { /* non-fatal */ }
-
-            // ── 3. Desktop panel: auto-select arch (arm64 vs x64) ──
-            // Best-effort — user-agent lies on Apple Silicon, so high-entropy
-            // client hints (Chromium) are checked async as an upgrade.
-            function setArchRadio(os, arch) {
-              var el = document.getElementById('eca-desktop-arch-' + os + '-' + arch);
-              if (el) el.checked = true;
-            }
-            try {
-              var ua2 = (navigator.userAgent || '').toLowerCase();
-              if (/aarch64|arm64|armv8/.test(ua2)) {
-                setArchRadio('mac', 'arm64');
-                setArchRadio('linux', 'arm64');
-              }
-              // Async high-entropy hint (Chromium only): overrides with accurate arch.
-              if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-                navigator.userAgentData.getHighEntropyValues(['architecture']).then(function (v) {
-                  var arch = null;
-                  if (v.architecture === 'arm')      arch = 'arm64';
-                  else if (v.architecture === 'x86') arch = 'x64';
-                  if (arch) {
-                    setArchRadio('mac', arch);
-                    setArchRadio('linux', arch);
-                  }
-                }).catch(function () { /* non-fatal */ });
-              }
-            } catch (_e) { /* non-fatal */ }
-          })();
-        </script>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Install manually (secondary, collapsed by default) ── -->
-  <section class="eca-install-advanced">
-    <div class="eca-install-advanced__inner">
-      <div class="eca-install-advanced__details">
-        <div class="eca-install-advanced__summary">
-          <span class="eca-install-advanced__label">
-            <h3><span class="eca-install-advanced__title">Install the ECA server manually</span></h3>
-            <span class="eca-install-advanced__kicker eca-install-advanced__kicker--warning">Not recommended</span>
-          </span>
-        </div>
-        <div class="eca-install-advanced__content">
-          <p class="eca-install-advanced__desc">
-            Most users don't need this &mdash; editor plugins auto-download the server.
-            Use one of the options below if you want to manage the <code>eca</code> binary
-            yourself, e.g. for scripted setups, CI, containers, or air-gapped machines.
-          </p>
-
-          <div class="eca-install-manual-wrap">
-        <input type="radio" name="eca-manual" id="eca-manual-script" checked>
-        <input type="radio" name="eca-manual" id="eca-manual-brew">
-        <input type="radio" name="eca-manual" id="eca-manual-mise">
-        <input type="radio" name="eca-manual" id="eca-manual-releases">
-
-        <div class="eca-install-tabs eca-install-subtabs">
-          <label for="eca-manual-script"   class="eca-install-tab eca-install-subtab">Install Script</label>
-          <label for="eca-manual-brew"     class="eca-install-tab eca-install-subtab">Homebrew</label>
-          <label for="eca-manual-mise"     class="eca-install-tab eca-install-subtab">mise</label>
-          <label for="eca-manual-releases" class="eca-install-tab eca-install-subtab">GitHub Releases</label>
-        </div>
-
-        <div class="eca-install-subpanels">
-          <!-- Script -->
-          <div class="eca-install-subpanel eca-install-subpanel--script">
-            <p>Stable release:</p>
-            <div class="eca-code">
-              <div class="eca-code__bar">
-                <span class="eca-code__dot eca-code__dot--red"></span>
-                <span class="eca-code__dot eca-code__dot--yellow"></span>
-                <span class="eca-code__dot eca-code__dot--green"></span>
-                <span class="eca-code__title">bash</span>
-              </div>
-<pre>bash &lt;(curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca/master/install)</pre>
-            </div>
-            <p>Or if you face permission issues with the command above:</p>
-            <div class="eca-code">
-              <div class="eca-code__bar">
-                <span class="eca-code__dot eca-code__dot--red"></span>
-                <span class="eca-code__dot eca-code__dot--yellow"></span>
-                <span class="eca-code__dot eca-code__dot--green"></span>
-                <span class="eca-code__title">bash</span>
-              </div>
-<pre>curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca/master/install | sudo bash</pre>
-            </div>
-            <p>Nightly build:</p>
-            <div class="eca-code">
-              <div class="eca-code__bar">
-                <span class="eca-code__dot eca-code__dot--red"></span>
-                <span class="eca-code__dot eca-code__dot--yellow"></span>
-                <span class="eca-code__dot eca-code__dot--green"></span>
-                <span class="eca-code__title">bash</span>
-              </div>
-<pre>bash &lt;(curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca/master/install) <span class="hl-flag">--version</span> nightly <span class="hl-flag">--dir</span> ~/</pre>
-            </div>
-            <p class="eca-install-note">The script requires <code>curl</code> and <code>unzip</code>.</p>
-          </div>
-
-          <!-- Homebrew -->
-          <div class="eca-install-subpanel eca-install-subpanel--brew">
-            <p>We publish a custom Homebrew tap with the native compiled binaries:</p>
-            <div class="eca-code">
-              <div class="eca-code__bar">
-                <span class="eca-code__dot eca-code__dot--red"></span>
-                <span class="eca-code__dot eca-code__dot--yellow"></span>
-                <span class="eca-code__dot eca-code__dot--green"></span>
-                <span class="eca-code__title">shell</span>
-              </div>
-<pre>brew install editor-code-assistant/brew/eca</pre>
-            </div>
-          </div>
-
-          <!-- mise -->
-          <div class="eca-install-subpanel eca-install-subpanel--mise">
-            <p>Install using <a href="https://mise.jdx.dev" target="_blank" rel="noopener">mise</a>:</p>
-            <div class="eca-code">
-              <div class="eca-code__bar">
-                <span class="eca-code__dot eca-code__dot--red"></span>
-                <span class="eca-code__dot eca-code__dot--yellow"></span>
-                <span class="eca-code__dot eca-code__dot--green"></span>
-                <span class="eca-code__title">shell</span>
-              </div>
-<pre><span class="hl-comm"># Install the plugin</span>
-mise plugin install eca https://github.com/editor-code-assistant/eca-mise-plugin
-
-<span class="hl-comm"># Install latest version of ECA</span>
-mise install eca
-mise use -g eca
-
-<span class="hl-comm"># Or install and use a specific version</span>
-mise install eca@0.58.0
-mise use -g eca@0.58.0
-
-<span class="hl-comm"># Verify installation</span>
-eca --version</pre>
-            </div>
-          </div>
-
-          <!-- GitHub Releases -->
-          <div class="eca-install-subpanel eca-install-subpanel--releases">
-            <p>
-              You can download the
-              <a href="https://github.com/editor-code-assistant/eca/releases" target="_blank" rel="noopener">native binaries from GitHub Releases</a>
-              directly, although this way it's easy to end up with an outdated ECA &mdash;
-              the install script or a package manager are recommended instead.
-            </p>
-          </div>
-        </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Help footer ── -->
-  <section class="eca-install-help">
-    <div class="eca-install-help__inner">
-      <h3 class="eca-install-help__title">Something not working?</h3>
-      <ul class="eca-install-help__list">
-        <li>Check the <a href="troubleshooting">Troubleshooting</a> page</li>
-        <li>Browse the <a href="config/introduction">Configuration</a> docs to hook up your first model</li>
-        <li>Open an <a href="https://github.com/editor-code-assistant/eca/issues" target="_blank" rel="noopener">issue on GitHub</a></li>
-      </ul>
-    </div>
-  </section>
-
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1993,27 +1443,9 @@ eca --version</pre>
   
   
   
-    
-    
-    
-    
-      
-      
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -2022,13 +1454,54 @@ eca --version</pre>
   </span>
   
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Home
+            Documentation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2036,76 +1509,91 @@ eca --version</pre>
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    ECA - Free Open Source AI Pair Programming in Any Editor
+    Install
     
   </span>
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On This Page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On This Page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where do you want to use ECA?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install the ECA server manually
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Something not working?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
               
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Features
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Features
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -2159,129 +1647,11 @@ eca --version</pre>
   
   
   
-    <li class="md-nav__item">
-      <a href="../read-chat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Read Chat CLI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
     
     
     
     
       
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    Install
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Install
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Install ECA
-    
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
       
     
     
@@ -2289,12 +1659,10 @@ eca --version</pre>
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   
@@ -2307,8 +1675,8 @@ eca --version</pre>
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Configuration
           </label>
@@ -2327,6 +1695,29 @@ eca --version</pre>
   
   <span class="md-ellipsis">
     Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modules
     
   </span>
   
@@ -2757,6 +2148,83 @@ eca --version</pre>
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ECA Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    read-chat CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -2765,7 +2233,51 @@ eca --version</pre>
   
   
     <li class="md-nav__item">
-      <a href="../protocol/" class="md-nav__link">
+      <a href="/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/config/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/protocol/" class="md-nav__link">
         
   
   
@@ -2787,7 +2299,7 @@ eca --version</pre>
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="/troubleshooting/" class="md-nav__link">
         
   
   
@@ -2854,17 +2366,52 @@ eca --version</pre>
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On This Page">
   
   
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On This Page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where do you want to use ECA?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install the ECA server manually
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Something not working?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2876,6 +2423,653 @@ eca --version</pre>
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  
+
+  <h1>Install ECA</h1>
+
+  <!-- ── Intro (compact, light-themed; replaces the old dark hero) ── -->
+  <section class="eca-install-intro">
+    <div class="eca-install-intro__inner">
+      <p class="eca-install-intro__note">
+        ECA is written in Clojure and compiled into a native binary via GraalVM.
+      </p>
+      <div class="eca-install-intro__callout">
+        <span class="eca-install-intro__callout-icon"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  class="lucide lucide-info"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 16v-4" />
+  <path d="M12 8h.01" />
+</svg></span>
+        <div>
+          <strong>Auto install</strong> &mdash; ECA is already downloaded and updated automatically
+          by all official editor plugins, so you don't need to handle it manually. The tabs
+          below are only for users who want to install ECA themselves.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Picker ── -->
+  <section class="eca-install-picker">
+    <div class="eca-install-picker__inner">
+      <h2 class="eca-install-picker__question" id="where">Where do you want to use ECA?</h2>
+
+      <!-- Hidden radios drive the CSS-only reveal. The hash-sync script below
+           keeps window.location.hash in sync so tabs are shareable links. -->
+      <input type="radio" name="eca-install" id="eca-install-emacs" checked>
+      <input type="radio" name="eca-install" id="eca-install-vscode">
+      <input type="radio" name="eca-install" id="eca-install-neovim">
+      <input type="radio" name="eca-install" id="eca-install-intellij">
+      <input type="radio" name="eca-install" id="eca-install-desktop">
+      <input type="radio" name="eca-install" id="eca-install-cli">
+
+      <div class="eca-install-tabs" role="tablist">
+        <label for="eca-install-emacs"    class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 24C5.448 24 .118 18.617.118 12S5.448 0 12 0c6.552 0 11.882 5.383 11.882 12S18.552 24 12 24m0-23.339C5.813.661.779 5.748.779 12s5.034 11.339 11.221 11.339c6.187 0 11.221-5.086 11.221-11.339S18.187.661 12 .661M8.03 20.197s.978.069 2.236-.042c.51-.045 2.444-.235 3.891-.552 0 0 1.764-.377 2.707-.725.987-.364 1.524-.673 1.766-1.11-.011-.09.074-.408-.381-.599-1.164-.488-2.514-.4-5.185-.457-2.962-.102-3.948-.598-4.472-.997-.503-.405-.25-1.526 1.907-2.513 1.086-.526 5.345-1.496 5.345-1.496-1.434-.709-4.109-1.955-4.659-2.224-.482-.236-1.254-.591-1.421-1.021-.19-.413.448-.768.804-.87 1.147-.331 2.766-.536 4.24-.56.741-.012.861-.059.861-.059 1.022-.17 1.695-.869 1.414-1.976-.252-1.13-1.579-1.795-2.84-1.565-1.188.217-4.05 1.048-4.05 1.048 3.539-.031 4.131.028 4.395.398.156.218-.071.518-1.015.672-1.027.168-3.163.37-3.163.37-2.049.122-3.492.13-3.925 1.046-.282.57.303 1.1.559 1.431 1.082 1.204 2.646 1.853 3.652 2.331.379.18 1.49.52 1.49.52-3.265-.18-5.619.823-7.001 1.977-1.562 1.445-.871 3.168 2.33 4.228 1.891.626 2.828.921 5.648.667 1.661-.09 1.923-.036 1.939.1.023.192-1.845.669-2.355.816-1.298.374-4.699 1.129-4.716 1.133z"/></svg>    Emacs</label>
+        <label for="eca-install-vscode"   class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M17.583 2.006l-4.45 4.164L7.29 1.57 2.07 4.122v15.756L7.29 22.43l5.843-4.6 4.45 4.164L21.93 19.2V4.8l-4.347-2.794zM7.29 14.768V9.232L10.824 12 7.29 14.768zm10.293 2.674L13.99 12l3.593-5.442v10.884z"/></svg>   VS Code</label>
+        <label for="eca-install-neovim"   class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M2.214 4.954v13.615L7.2 24V10.314L14.863 19.6h.075l4.848-5.37V2.086l-4.985 5.2V0z"/></svg>   Neovim</label>
+        <label for="eca-install-intellij" class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm1.5 1.5v15h15v-15h-15zM5.25 18h7.5v1.5h-7.5V18zm0-2.25h4.5V17.25h-4.5V15.75zM5.25 6h1.5v6h-1.5V6zm3 0h3.75c1.6 0 2.62 1.12 2.62 2.62 0 1.5-1.05 2.63-2.62 2.63H9.75V12h-1.5V6zm1.5 1.35v2.55h2.1c.68 0 1.2-.47 1.2-1.27 0-.83-.52-1.28-1.2-1.28H9.75z"/></svg> IntelliJ</label>
+        <label for="eca-install-desktop"  class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/></svg>  Desktop</label>
+        <label for="eca-install-cli"      class="eca-install-tab" role="tab"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zM6.5 10.5l1.06-1.06L10.5 12l-2.94 2.56L6.5 13.5 8.38 12 6.5 10.5zM12 14h5.5v1.5H12V14z"/></svg> CLI</label>
+      </div>
+
+      <div class="eca-install-panels">
+        <div class="eca-install-panel eca-install-panel--emacs">
+      <div class="eca-install-panel__body">
+        <h3 class="eca-install-panel__title">
+          <svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 24C5.448 24 .118 18.617.118 12S5.448 0 12 0c6.552 0 11.882 5.383 11.882 12S18.552 24 12 24m0-23.339C5.813.661.779 5.748.779 12s5.034 11.339 11.221 11.339c6.187 0 11.221-5.086 11.221-11.339S18.187.661 12 .661M8.03 20.197s.978.069 2.236-.042c.51-.045 2.444-.235 3.891-.552 0 0 1.764-.377 2.707-.725.987-.364 1.524-.673 1.766-1.11-.011-.09.074-.408-.381-.599-1.164-.488-2.514-.4-5.185-.457-2.962-.102-3.948-.598-4.472-.997-.503-.405-.25-1.526 1.907-2.513 1.086-.526 5.345-1.496 5.345-1.496-1.434-.709-4.109-1.955-4.659-2.224-.482-.236-1.254-.591-1.421-1.021-.19-.413.448-.768.804-.87 1.147-.331 2.766-.536 4.24-.56.741-.012.861-.059.861-.059 1.022-.17 1.695-.869 1.414-1.976-.252-1.13-1.579-1.795-2.84-1.565-1.188.217-4.05 1.048-4.05 1.048 3.539-.031 4.131.028 4.395.398.156.218-.071.518-1.015.672-1.027.168-3.163.37-3.163.37-2.049.122-3.492.13-3.925 1.046-.282.57.303 1.1.559 1.431 1.082 1.204 2.646 1.853 3.652 2.331.379.18 1.49.52 1.49.52-3.265-.18-5.619.823-7.001 1.977-1.562 1.445-.871 3.168 2.33 4.228 1.891.626 2.828.921 5.648.667 1.661-.09 1.923-.036 1.939.1.023.192-1.845.669-2.355.816-1.298.374-4.699 1.129-4.716 1.133z"/></svg>
+          ECA in Emacs
+        </h3>
+        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
+          The <strong>eca-emacs</strong> plugin bundles and keeps the ECA binary up-to-date
+          automatically.
+        </p>
+        <p class="eca-install-panel__desc">
+          Install the plugin for Emacs and you're done. No separate server install is needed.
+        </p>
+        <a href="https://github.com/editor-code-assistant/eca-emacs" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
+          Install eca-emacs plugin
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
+        </a>
+        <span class="eca-install-panel__meta">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Auto-downloads the ECA server on first launch
+        </span>
+      </div>
+    </div>
+        <div class="eca-install-panel eca-install-panel--vscode">
+      <div class="eca-install-panel__body">
+        <h3 class="eca-install-panel__title">
+          <svg viewBox="0 0 24 24"><path d="M17.583 2.006l-4.45 4.164L7.29 1.57 2.07 4.122v15.756L7.29 22.43l5.843-4.6 4.45 4.164L21.93 19.2V4.8l-4.347-2.794zM7.29 14.768V9.232L10.824 12 7.29 14.768zm10.293 2.674L13.99 12l3.593-5.442v10.884z"/></svg>
+          ECA in VS Code
+        </h3>
+        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
+          The <strong>eca-vscode</strong> plugin bundles and keeps the ECA binary up-to-date
+          automatically.
+        </p>
+        <p class="eca-install-panel__desc">
+          Install the plugin for VS Code and you're done. No separate server install is needed.
+        </p>
+        <a href="https://github.com/editor-code-assistant/eca-vscode" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
+          Install eca-vscode plugin
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
+        </a>
+        <span class="eca-install-panel__meta">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Auto-downloads the ECA server on first launch
+        </span>
+      </div>
+    </div>
+        <div class="eca-install-panel eca-install-panel--neovim">
+      <div class="eca-install-panel__body">
+        <h3 class="eca-install-panel__title">
+          <svg viewBox="0 0 24 24"><path d="M2.214 4.954v13.615L7.2 24V10.314L14.863 19.6h.075l4.848-5.37V2.086l-4.985 5.2V0z"/></svg>
+          ECA in Neovim
+        </h3>
+        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
+          The <strong>eca-nvim</strong> plugin bundles and keeps the ECA binary up-to-date
+          automatically.
+        </p>
+        <p class="eca-install-panel__desc">
+          Install the plugin for Neovim and you're done. No separate server install is needed.
+        </p>
+        <a href="https://github.com/editor-code-assistant/eca-nvim" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
+          Install eca-nvim plugin
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
+        </a>
+        <span class="eca-install-panel__meta">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Auto-downloads the ECA server on first launch
+        </span>
+      </div>
+    </div>
+        <div class="eca-install-panel eca-install-panel--intellij">
+      <div class="eca-install-panel__body">
+        <h3 class="eca-install-panel__title">
+          <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm1.5 1.5v15h15v-15h-15zM5.25 18h7.5v1.5h-7.5V18zm0-2.25h4.5V17.25h-4.5V15.75zM5.25 6h1.5v6h-1.5V6zm3 0h3.75c1.6 0 2.62 1.12 2.62 2.62 0 1.5-1.05 2.63-2.62 2.63H9.75V12h-1.5V6zm1.5 1.35v2.55h2.1c.68 0 1.2-.47 1.2-1.27 0-.83-.52-1.28-1.2-1.28H9.75z"/></svg>
+          ECA in IntelliJ
+        </h3>
+        <p class="eca-install-panel__desc eca-install-panel__desc--lead">
+          The <strong>eca-intellij</strong> plugin bundles and keeps the ECA binary up-to-date
+          automatically.
+        </p>
+        <p class="eca-install-panel__desc">
+          Install the plugin for IntelliJ and you're done. No separate server install is needed.
+        </p>
+        <a href="https://github.com/editor-code-assistant/eca-intellij" class="eca-install-btn eca-install-btn--primary" target="_blank" rel="noopener">
+          Install eca-intellij plugin
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
+        </a>
+        <span class="eca-install-panel__meta">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Auto-downloads the ECA server on first launch
+        </span>
+      </div>
+    </div>
+        <!-- Desktop panel: direct GitHub Release download, with Linux/macOS/Windows tabs. -->
+        <div class="eca-install-panel eca-install-panel--desktop">
+          <div class="eca-install-panel__body">
+            <h3 class="eca-install-panel__title">
+              <svg viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/></svg>
+              ECA Desktop
+            </h3>
+            <p class="eca-install-panel__desc">
+              A standalone desktop app for ECA, built with Electron. Download the latest
+              release for your platform directly from
+              <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
+              &mdash; the ECA server is bundled, and supported formats auto-update in place.
+            </p>
+
+            <div class="eca-install-os" id="eca-desktop-os">
+              <input type="radio" name="eca-desktop-os" id="eca-desktop-os-linux" checked>
+              <input type="radio" name="eca-desktop-os" id="eca-desktop-os-mac">
+              <input type="radio" name="eca-desktop-os" id="eca-desktop-os-windows">
+
+              <div class="eca-install-os__tabs">
+                <label for="eca-desktop-os-linux" class="eca-install-os__tab">
+                  <svg viewBox="0 0 24 24"><path d="M12.504 2.004c-1.657 0-3 1.77-3 3.95 0 1.137.346 2.16.908 2.88-.673.517-1.507 1.06-2.254 1.635-.905.696-1.736 1.458-2.352 2.287-.615.83-1.066 1.765-1.066 2.8 0 1.15.836 2.5 2 2.5.62 0 1.005-.41 1.242-.88.34.49 1 .88 1.758.88.647 0 1.215-.25 1.66-.64.445.39 1.013.64 1.66.64.647 0 1.215-.25 1.66-.64.445.39 1.013.64 1.66.64.758 0 1.418-.39 1.758-.88.237.47.622.88 1.242.88 1.164 0 2-1.35 2-2.5 0-1.035-.451-1.97-1.066-2.8-.616-.829-1.447-1.591-2.352-2.287-.747-.575-1.581-1.118-2.254-1.635.562-.72.908-1.743.908-2.88 0-2.18-1.343-3.95-3-3.95zm-1.25 4.25a.8.8 0 0 1 .8.8.8.8 0 0 1-.8.8.8.8 0 0 1-.8-.8.8.8 0 0 1 .8-.8zm2.5 0a.8.8 0 0 1 .8.8.8.8 0 0 1-.8.8.8.8 0 0 1-.8-.8.8.8 0 0 1 .8-.8zM12 8.75c1.1 0 2.25.6 2.25 1.5 0 .45-.35.85-.85 1.15-.4.25-.9.4-1.4.4-.5 0-1-.15-1.4-.4-.5-.3-.85-.7-.85-1.15 0-.9 1.15-1.5 2.25-1.5z"/></svg>
+                  Linux
+                </label>
+                <label for="eca-desktop-os-mac" class="eca-install-os__tab">
+                  <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  macOS
+                </label>
+                <label for="eca-desktop-os-windows" class="eca-install-os__tab">
+                  <svg viewBox="0 0 24 24"><path d="M3 5.48L10.87 4.4v7.6H3V5.48zM3 18.52L10.87 19.6V12H3v6.52zm8.83 1.22L22 20.94V12h-10.17v7.74zm0-15.48V12H22V3.06l-10.17 1.2z"/></svg>
+                  Windows
+                </label>
+              </div>
+
+              <div class="eca-install-os__panels">
+                <!-- Linux: arch picker + per-arch downloads -->
+                <div class="eca-install-os__panel eca-install-os__panel--linux">
+                  <div class="eca-install-arch">
+                    <!-- HTML default: Linux x64 (most common); JS upgrades to arm64 on detection. -->
+                    <input type="radio" name="eca-desktop-arch-linux" id="eca-desktop-arch-linux-x64" checked>
+                    <input type="radio" name="eca-desktop-arch-linux" id="eca-desktop-arch-linux-arm64">
+
+                    <div class="eca-install-arch__toggle">
+                      <label for="eca-desktop-arch-linux-x64" class="eca-install-arch__segment">
+                        <span class="eca-install-arch__segment-title">x86_64</span>
+                        <span class="eca-install-arch__segment-sub">Intel / AMD</span>
+                      </label>
+                      <label for="eca-desktop-arch-linux-arm64" class="eca-install-arch__segment">
+                        <span class="eca-install-arch__segment-title">arm64</span>
+                        <span class="eca-install-arch__segment-sub">aarch64 · ARM</span>
+                      </label>
+                    </div>
+
+                    <div class="eca-install-arch__downloads">
+                      <div class="eca-install-arch__download eca-install-arch__download--linux-x64">
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-x86_64.AppImage"
+                           class="eca-install-download__link eca-install-download__link--primary"
+                           target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> AppImage
+                          <span class="eca-install-download__tag">Recommended</span>
+                        </a>
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-amd64.deb"
+                           class="eca-install-download__link" target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .deb
+                        </a>
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-x86_64.flatpak"
+                           class="eca-install-download__link" target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Flatpak
+                        </a>
+                      </div>
+                      <div class="eca-install-arch__download eca-install-arch__download--linux-arm64">
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-arm64.AppImage"
+                           class="eca-install-download__link eca-install-download__link--primary"
+                           target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> AppImage
+                          <span class="eca-install-download__tag">Recommended</span>
+                        </a>
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-linux-arm64.deb"
+                           class="eca-install-download__link" target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .deb
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="eca-install-note">
+                    <strong>AppImage</strong> is the recommended format &mdash; it auto-updates
+                    in place via <code>electron-updater</code>. <strong>.deb</strong> does
+                    <em>not</em> auto-update; upgrade by downloading a fresh <code>.deb</code>
+                    when a new release ships. <strong>Flatpak</strong> (x86_64) runs the app
+                    sandboxed &mdash; install with
+                    <code>flatpak install --user eca-linux-x86_64.flatpak</code>, upgrade by
+                    installing a fresh bundle. In every format the managed <code>eca</code>
+                    server keeps auto-updating on its own.
+                  </p>
+                </div>
+
+                <!-- macOS: arch picker + per-arch downloads -->
+                <div class="eca-install-os__panel eca-install-os__panel--mac">
+                  <div class="eca-install-arch">
+                    <!-- HTML default: Apple Silicon (majority of modern Macs); JS may override to x64. -->
+                    <input type="radio" name="eca-desktop-arch-mac" id="eca-desktop-arch-mac-arm64" checked>
+                    <input type="radio" name="eca-desktop-arch-mac" id="eca-desktop-arch-mac-x64">
+
+                    <div class="eca-install-arch__toggle">
+                      <label for="eca-desktop-arch-mac-arm64" class="eca-install-arch__segment">
+                        <span class="eca-install-arch__segment-title">Apple Silicon</span>
+                        <span class="eca-install-arch__segment-sub">arm64 · M1–M4</span>
+                      </label>
+                      <label for="eca-desktop-arch-mac-x64" class="eca-install-arch__segment">
+                        <span class="eca-install-arch__segment-title">Intel</span>
+                        <span class="eca-install-arch__segment-sub">x86_64</span>
+                      </label>
+                    </div>
+
+                    <div class="eca-install-arch__downloads">
+                      <div class="eca-install-arch__download eca-install-arch__download--mac-arm64">
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-arm64.dmg"
+                           class="eca-install-download__link eca-install-download__link--primary"
+                           target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .dmg
+                          <span class="eca-install-download__tag">Recommended</span>
+                        </a>
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-arm64.zip"
+                           class="eca-install-download__link" target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .zip
+                        </a>
+                      </div>
+                      <div class="eca-install-arch__download eca-install-arch__download--mac-x64">
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-x64.dmg"
+                           class="eca-install-download__link eca-install-download__link--primary"
+                           target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .dmg
+                          <span class="eca-install-download__tag">Recommended</span>
+                        </a>
+                        <a href="https://github.com/editor-code-assistant/eca-desktop/releases/latest/download/eca-mac-x64.zip"
+                           class="eca-install-download__link" target="_blank" rel="noopener">
+                          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> .zip
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="eca-install-note">
+                    Both <strong>.dmg</strong> and <strong>.zip</strong> auto-update in place
+                    via <code>electron-updater</code>. If macOS Gatekeeper blocks the app on
+                    first launch (unsigned builds), right-click the app in
+                    <em>Applications</em> and choose <strong>Open</strong>.
+                  </p>
+                </div>
+
+                <!-- Windows -->
+                <div class="eca-install-os__panel eca-install-os__panel--windows">
+                  <div class="eca-install-coming-soon">
+                    <div class="eca-install-coming-soon__emoji"><!-- @license lucide-static v1.57.0 - ISC -->
+<svg
+  class="lucide lucide-wand-sparkles"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72" />
+  <path d="m14 7 3 3" />
+  <path d="M5 6v4" />
+  <path d="M19 14v4" />
+  <path d="M10 2v2" />
+  <path d="M7 8H3" />
+  <path d="M21 16h-4" />
+  <path d="M11 3H9" />
+</svg></div>
+                    <h4 class="eca-install-coming-soon__title">Windows builds are planned</h4>
+                    <p class="eca-install-coming-soon__desc">
+                      Native Windows installers aren't shipping yet. In the meantime, you can
+                      run ECA through the VS Code or IntelliJ plugin on Windows, or build
+                      from source.
+                    </p>
+                    <a href="https://github.com/editor-code-assistant/eca-desktop"
+                       class="eca-install-btn eca-install-btn--primary"
+                       target="_blank" rel="noopener">
+                      Watch eca-desktop on GitHub
+                      <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/><path d="M5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="eca-install-panel__footer-note">
+              <a href="https://github.com/editor-code-assistant/eca-desktop/releases" target="_blank" rel="noopener">
+                Browse all Desktop releases on GitHub &rarr;
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- CLI panel: install script for the eca-cli terminal client. -->
+        <div class="eca-install-panel eca-install-panel--cli">
+          <div class="eca-install-panel__body">
+            <h3 class="eca-install-panel__title">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zM6.5 10.5l1.06-1.06L10.5 12l-2.94 2.56L6.5 13.5 8.38 12 6.5 10.5zM12 14h5.5v1.5H12V14z"/></svg>
+              ECA CLI
+            </h3>
+            <p class="eca-install-panel__desc eca-install-panel__desc--lead">
+              <strong>eca-cli</strong> is a keyboard-driven terminal client for ECA, no editor
+              required. It downloads and keeps the ECA server up-to-date automatically.
+            </p>
+            <p class="eca-install-panel__desc">
+              Install it with the script below and run it from your project directory.
+              No separate server install is needed.
+            </p>
+            <div class="eca-code">
+              <div class="eca-code__bar">
+                <span class="eca-code__dot eca-code__dot--red"></span>
+                <span class="eca-code__dot eca-code__dot--yellow"></span>
+                <span class="eca-code__dot eca-code__dot--green"></span>
+                <span class="eca-code__title">bash</span>
+              </div>
+<pre><span class="hl-comm"># Install or update eca-cli</span>
+bash &lt;(curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca-cli/main/install)
+
+<span class="hl-comm"># Start it from your project directory</span>
+cd your-project
+eca-cli</pre>
+            </div>
+            <p class="eca-install-note">
+              The script requires <code>curl</code> and <code>tar</code>, and installs a single
+              self-contained <code>eca-cli</code> binary for Linux or macOS (x86_64 / arm64) in
+              <code>~/.local/bin</code> (<code>/usr/local/bin</code> as root); pass
+              <code>--dir &lt;dir&gt;</code> to pick another place. On other platforms, run the
+              <code>eca-cli.jar</code> release with Babashka: <code>bb eca-cli.jar</code>.
+            </p>
+
+            <p class="eca-install-panel__footer-note">
+              <a href="https://github.com/editor-code-assistant/eca-cli" target="_blank" rel="noopener">
+                View eca-cli on GitHub &rarr;
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!--
+          Install page scripts:
+          1. Primary tab URL-hash sync (shareable links like /install/#neovim).
+          2. Desktop-panel OS auto-detect (matching radio gets `checked` on load).
+          Both fail silently if JS is disabled — HTML `checked` attributes are the fallback.
+        -->
+        <script>
+          (function () {
+            var PRIMARY_TABS = ['emacs', 'vscode', 'neovim', 'intellij', 'desktop', 'cli'];
+
+            // ── 1. Primary tab ↔ URL hash sync ──
+            function applyHashToPrimaryTab() {
+              var hash = (window.location.hash || '').replace('#', '').toLowerCase();
+              if (PRIMARY_TABS.indexOf(hash) === -1) return;
+              var radio = document.getElementById('eca-install-' + hash);
+              if (radio) radio.checked = true;
+            }
+
+            try { applyHashToPrimaryTab(); } catch (_e) {}
+
+            // Re-sync on back/forward navigation
+            window.addEventListener('hashchange', function () {
+              try { applyHashToPrimaryTab(); } catch (_e) {}
+            });
+
+            // Update the URL hash when the user clicks a tab, without
+            // polluting browser history or triggering a scroll jump.
+            PRIMARY_TABS.forEach(function (tab) {
+              var radio = document.getElementById('eca-install-' + tab);
+              if (!radio) return;
+              radio.addEventListener('change', function () {
+                if (!radio.checked) return;
+                try {
+                  if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', '#' + tab);
+                  } else {
+                    window.location.hash = tab;
+                  }
+                } catch (_e) {}
+              });
+            });
+
+            // ── 2. Desktop panel: auto-select OS based on user-agent ──
+            try {
+              var ua = (navigator.userAgent || navigator.platform || '').toLowerCase();
+              var osId = null;
+              if (/mac|darwin|iphone|ipad/.test(ua))         osId = 'eca-desktop-os-mac';
+              else if (/win/.test(ua))                        osId = 'eca-desktop-os-windows';
+              else if (/linux|x11|bsd|android|cros/.test(ua)) osId = 'eca-desktop-os-linux';
+              if (osId) {
+                var osEl = document.getElementById(osId);
+                if (osEl) osEl.checked = true;
+              }
+            } catch (_e) { /* non-fatal */ }
+
+            // ── 3. Desktop panel: auto-select arch (arm64 vs x64) ──
+            // Best-effort — user-agent lies on Apple Silicon, so high-entropy
+            // client hints (Chromium) are checked async as an upgrade.
+            function setArchRadio(os, arch) {
+              var el = document.getElementById('eca-desktop-arch-' + os + '-' + arch);
+              if (el) el.checked = true;
+            }
+            try {
+              var ua2 = (navigator.userAgent || '').toLowerCase();
+              if (/aarch64|arm64|armv8/.test(ua2)) {
+                setArchRadio('mac', 'arm64');
+                setArchRadio('linux', 'arm64');
+              }
+              // Async high-entropy hint (Chromium only): overrides with accurate arch.
+              if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+                navigator.userAgentData.getHighEntropyValues(['architecture']).then(function (v) {
+                  var arch = null;
+                  if (v.architecture === 'arm')      arch = 'arm64';
+                  else if (v.architecture === 'x86') arch = 'x64';
+                  if (arch) {
+                    setArchRadio('mac', arch);
+                    setArchRadio('linux', arch);
+                  }
+                }).catch(function () { /* non-fatal */ });
+              }
+            } catch (_e) { /* non-fatal */ }
+          })();
+        </script>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Install manually (secondary, collapsed by default) ── -->
+  <section class="eca-install-advanced">
+    <div class="eca-install-advanced__inner">
+      <div class="eca-install-advanced__details">
+        <div class="eca-install-advanced__summary">
+          <span class="eca-install-advanced__label">
+            <h3 id="manual"><span class="eca-install-advanced__title">Install the ECA server manually</span></h3>
+            <span class="eca-install-advanced__kicker eca-install-advanced__kicker--warning">Not recommended</span>
+          </span>
+        </div>
+        <div class="eca-install-advanced__content">
+          <p class="eca-install-advanced__desc">
+            Most users don't need this &mdash; editor plugins auto-download the server.
+            Use one of the options below if you want to manage the <code>eca</code> binary
+            yourself, e.g. for scripted setups, CI, containers, or air-gapped machines.
+          </p>
+
+          <div class="eca-install-manual-wrap">
+        <input type="radio" name="eca-manual" id="eca-manual-script" checked>
+        <input type="radio" name="eca-manual" id="eca-manual-brew">
+        <input type="radio" name="eca-manual" id="eca-manual-mise">
+        <input type="radio" name="eca-manual" id="eca-manual-releases">
+
+        <div class="eca-install-tabs eca-install-subtabs">
+          <label for="eca-manual-script"   class="eca-install-tab eca-install-subtab">Install Script</label>
+          <label for="eca-manual-brew"     class="eca-install-tab eca-install-subtab">Homebrew</label>
+          <label for="eca-manual-mise"     class="eca-install-tab eca-install-subtab">mise</label>
+          <label for="eca-manual-releases" class="eca-install-tab eca-install-subtab">GitHub Releases</label>
+        </div>
+
+        <div class="eca-install-subpanels">
+          <!-- Script -->
+          <div class="eca-install-subpanel eca-install-subpanel--script">
+            <p>Stable release:</p>
+            <div class="eca-code">
+              <div class="eca-code__bar">
+                <span class="eca-code__dot eca-code__dot--red"></span>
+                <span class="eca-code__dot eca-code__dot--yellow"></span>
+                <span class="eca-code__dot eca-code__dot--green"></span>
+                <span class="eca-code__title">bash</span>
+              </div>
+<pre>bash &lt;(curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca/master/install)</pre>
+            </div>
+            <p>Or if you face permission issues with the command above:</p>
+            <div class="eca-code">
+              <div class="eca-code__bar">
+                <span class="eca-code__dot eca-code__dot--red"></span>
+                <span class="eca-code__dot eca-code__dot--yellow"></span>
+                <span class="eca-code__dot eca-code__dot--green"></span>
+                <span class="eca-code__title">bash</span>
+              </div>
+<pre>curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca/master/install | sudo bash</pre>
+            </div>
+            <p>Nightly build:</p>
+            <div class="eca-code">
+              <div class="eca-code__bar">
+                <span class="eca-code__dot eca-code__dot--red"></span>
+                <span class="eca-code__dot eca-code__dot--yellow"></span>
+                <span class="eca-code__dot eca-code__dot--green"></span>
+                <span class="eca-code__title">bash</span>
+              </div>
+<pre>bash &lt;(curl -fsSL https://raw.githubusercontent.com/editor-code-assistant/eca/master/install) <span class="hl-flag">--version</span> nightly <span class="hl-flag">--dir</span> ~/</pre>
+            </div>
+            <p class="eca-install-note">The script requires <code>curl</code> and <code>unzip</code>.</p>
+          </div>
+
+          <!-- Homebrew -->
+          <div class="eca-install-subpanel eca-install-subpanel--brew">
+            <p>We publish a custom Homebrew tap with the native compiled binaries:</p>
+            <div class="eca-code">
+              <div class="eca-code__bar">
+                <span class="eca-code__dot eca-code__dot--red"></span>
+                <span class="eca-code__dot eca-code__dot--yellow"></span>
+                <span class="eca-code__dot eca-code__dot--green"></span>
+                <span class="eca-code__title">shell</span>
+              </div>
+<pre>brew install editor-code-assistant/brew/eca</pre>
+            </div>
+          </div>
+
+          <!-- mise -->
+          <div class="eca-install-subpanel eca-install-subpanel--mise">
+            <p>Install using <a href="https://mise.jdx.dev" target="_blank" rel="noopener">mise</a>:</p>
+            <div class="eca-code">
+              <div class="eca-code__bar">
+                <span class="eca-code__dot eca-code__dot--red"></span>
+                <span class="eca-code__dot eca-code__dot--yellow"></span>
+                <span class="eca-code__dot eca-code__dot--green"></span>
+                <span class="eca-code__title">shell</span>
+              </div>
+<pre><span class="hl-comm"># Install the plugin</span>
+mise plugin install eca https://github.com/editor-code-assistant/eca-mise-plugin
+
+<span class="hl-comm"># Install latest version of ECA</span>
+mise install eca
+mise use -g eca
+
+<span class="hl-comm"># Or install and use a specific version</span>
+mise install eca@0.58.0
+mise use -g eca@0.58.0
+
+<span class="hl-comm"># Verify installation</span>
+eca --version</pre>
+            </div>
+          </div>
+
+          <!-- GitHub Releases -->
+          <div class="eca-install-subpanel eca-install-subpanel--releases">
+            <p>
+              You can download the
+              <a href="https://github.com/editor-code-assistant/eca/releases" target="_blank" rel="noopener">native binaries from GitHub Releases</a>
+              directly, although this way it's easy to end up with an outdated ECA &mdash;
+              the install script or a package manager are recommended instead.
+            </p>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Help footer ── -->
+  <section class="eca-install-help">
+    <div class="eca-install-help__inner">
+      <h3 class="eca-install-help__title" id="help">Something not working?</h3>
+      <ul class="eca-install-help__list">
+        <li>Check the <a href="../troubleshooting/">Troubleshooting</a> page</li>
+        <li>Browse the <a href="../config/introduction/">Configuration</a> docs to hook up your first model</li>
+        <li>Open an <a href="https://github.com/editor-code-assistant/eca/issues" target="_blank" rel="noopener">issue on GitHub</a></li>
+      </ul>
+    </div>
+  </section>
+
               </article>
             </div>
           
@@ -2889,6 +3083,32 @@ eca --version</pre>
   
 
   
+  <nav class="md-footer__inner md-grid" aria-label="Footer" >
+    
+    <a href=".." class="md-footer__link md-footer__link--prev">
+      <div class="md-footer__button md-icon">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </div>
+      <div class="md-footer__title">
+        <span class="md-footer__direction">Previous</span>
+        <span class="md-ellipsis">Home</span>
+      </div>
+    </a>
+    
+    
+    <a href="../features/" class="md-footer__link md-footer__link--next">
+      <div class="md-footer__title">
+        <span class="md-footer__direction">Next</span>
+        <span class="md-ellipsis">Features</span>
+      </div>
+      <div class="md-footer__button md-icon">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+      </div>
+    </a>
+    
+  </nav>
   
 
   <div class="md-footer-meta md-typeset">
@@ -2949,11 +3169,17 @@ eca --version</pre>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.follow", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
+        <script src="../js/toc-hash.js"></script>
+      
     
+  
+  
+
   </body>
 </html>

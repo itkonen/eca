@@ -16,7 +16,7 @@
         <link rel="prev" href="../config/examples/">
       
       
-        <link rel="next" href="../troubleshooting/">
+        <link rel="next" href="../read-chat/">
       
       
       <link rel="icon" href="../images/logo.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Protocol - ECA - Editor Code Assistant</title>
+        <title>ECA Protocol - ECA - Editor Code Assistant</title>
       
     
     
@@ -47,7 +47,7 @@
       
     
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=fallback">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=fallback">
     
       <link rel="stylesheet" href="../stylesheets/layout.css">
     
@@ -80,7 +80,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Protocol - ECA - Editor Code Assistant" />
+  <meta property="og:title" content="ECA Protocol - ECA - Editor Code Assistant" />
   <meta property="og:description" content="ECA protocol specification: the standardized client-server protocol for connecting AI assistants to code editors." />
   <meta property="og:url" content="https://eca.dev/protocol/" />
   <meta property="og:image" content="https://eca.dev/images/og-image.png" />
@@ -90,7 +90,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Protocol - ECA - Editor Code Assistant" />
+  <meta name="twitter:title" content="ECA Protocol - ECA - Editor Code Assistant" />
   <meta name="twitter:description" content="ECA protocol specification: the standardized client-server protocol for connecting AI assistants to code editors." />
   <meta name="twitter:image" content="https://eca.dev/images/og-image.png" />
 
@@ -139,7 +139,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Protocol
+              ECA Protocol
             
           </span>
         </div>
@@ -223,18 +223,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
   
+  
+    
   
   Home
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -242,35 +241,17 @@
   
   
   
-  
     
-    
-      <li class="md-tabs__item">
-        <a href="../features/" class="md-tabs__link">
-          
-  
-  
-  Features
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
   
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../install/" class="md-tabs__link">
           
   
   
-  Install
+  Documentation
 
         </a>
       </li>
@@ -283,18 +264,36 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../config/introduction/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="/install/" class="md-tabs__link">
+        
   
+  
+    
+  
+  Install
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="/config/introduction/" class="md-tabs__link">
+        
+  
+  
+    
   
   Configuration
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -302,11 +301,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="/protocol/" class="md-tabs__link">
         
   
   
@@ -325,7 +322,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../troubleshooting/" class="md-tabs__link">
+      <a href="/troubleshooting/" class="md-tabs__link">
         
   
   
@@ -426,27 +423,9 @@
   
   
   
-    
-    
-    
-    
-      
-      
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -455,13 +434,54 @@
   </span>
   
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Home
+            Documentation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -472,12 +492,12 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ECA - Free Open Source AI Pair Programming in Any Editor
+    Install
     
   </span>
   
@@ -487,58 +507,6 @@
   
 
               
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Features
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Features
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -592,43 +560,11 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../read-chat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Read Chat CLI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
     
       
-      
-        
       
     
     
@@ -636,87 +572,10 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Install
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Install
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Install ECA
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   
@@ -729,8 +588,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Configuration
           </label>
@@ -749,6 +608,29 @@
   
   <span class="md-ellipsis">
     Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modules
     
   </span>
   
@@ -1179,9 +1061,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
     
@@ -1201,7 +1084,7 @@
   
   
   <span class="md-ellipsis">
-    Protocol
+    ECA Protocol
     
   </span>
   
@@ -1214,7 +1097,7 @@
   
   
   <span class="md-ellipsis">
-    Protocol
+    ECA Protocol
     
   </span>
   
@@ -1223,7 +1106,9 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On This Page">
   
   
   
@@ -1232,7 +1117,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On This Page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1942,6 +1827,60 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    read-chat CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -1950,7 +1889,73 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/config/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/troubleshooting/" class="md-nav__link">
         
   
   
@@ -2022,7 +2027,9 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On This Page">
   
   
   
@@ -2031,7 +2038,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On This Page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -2898,14 +2905,11 @@ separated by a <code>\r\n</code>.</p>
 <span class="w">    </span><span class="p">};</span>
 
 <span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * User provided initialization options.</span>
+<span class="cm">     * User provided initialization options: ECA config, merged with the other</span>
+<span class="cm">     * config sources (see https://eca.dev/config/introduction). Clients may</span>
+<span class="cm">     * also send settings of their own here, which ECA ignores.</span>
 <span class="cm">     */</span>
-<span class="w">    </span><span class="nx">initializationOptions</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="cm">/*</span>
-<span class="cm">         * The chat agent.</span>
-<span class="cm">         */</span>
-<span class="w">         </span><span class="nx">chatAgent?</span><span class="o">:</span><span class="w"> </span><span class="kt">ChatAgent</span><span class="p">;</span>
-<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">initializationOptions?</span><span class="o">:</span><span class="w"> </span><span class="kt">object</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * The capabilities provided by the client (editor or tool)</span>
@@ -3191,10 +3195,15 @@ Used for broader questions or continuous discussion of project/files.</p>
 <span class="cm"> */</span>
 <span class="kr">type</span><span class="w"> </span><span class="nx">Model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 
-<span class="kr">type</span><span class="w"> </span><span class="nx">ChatContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">FileContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">DirectoryContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">WebContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">RepoMapContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">CursorContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">McpResourceContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">ImageContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">TextContext</span><span class="p">;</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">ChatContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">FileContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">DirectoryContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">WebContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">CursorContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">McpResourceContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">ImageContext</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">TextContext</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Context related to a file in the workspace</span>
+<span class="cm"> * The server delivers it in the user message (not the system prompt): its full</span>
+<span class="cm"> * content the first time it&#39;s sent in a chat (or after compaction, clear or</span>
+<span class="cm"> * rollback), a one-line notice when its content changes and nothing once</span>
+<span class="cm"> * clients stop sending it or the prompt text already expands it via `@path`.</span>
+<span class="cm"> * Clients should send the attached contexts on every prompt.</span>
 <span class="cm"> */</span>
 <span class="kd">interface</span><span class="w"> </span><span class="nx">FileContext</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;file&#39;</span><span class="p">;</span>
@@ -3216,6 +3225,7 @@ Used for broader questions or continuous discussion of project/files.</p>
 
 <span class="cm">/**</span>
 <span class="cm"> * Context related to a directory in the workspace</span>
+<span class="cm"> * The server expands it into its files, each delivered like a `FileContext`.</span>
 <span class="cm"> */</span>
 <span class="kd">interface</span><span class="w"> </span><span class="nx">DirectoryContext</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;directory&#39;</span><span class="p">;</span>
@@ -3279,17 +3289,6 @@ Used for broader questions or continuous discussion of project/files.</p>
 <span class="cm">     * The raw text content.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Context about the workspaces repo-map, automatically calculated by server.</span>
-<span class="cm"> * Clients should include this to chat by default but users may want exclude </span>
-<span class="cm"> * this context to reduce context size if needed.</span>
-<span class="cm"> *</span>
-<span class="cm"> * @deprecated No longer needed, replaced by eca__directory_tree tool.</span>
-<span class="cm"> */</span>
-<span class="kd">interface</span><span class="w"> </span><span class="nx">RepoMapContext</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;repoMap&#39;</span><span class="p">;</span><span class="w"> </span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -3491,7 +3490,8 @@ all behave like any other chat.</p>
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * The unique identifier of this content.</span>
 <span class="cm">     * Mostly used to rollback messages.</span>
-<span class="cm">     * Current, only user messages contain this.</span>
+<span class="cm">     * Currently, only user messages contain this, though not all of them</span>
+<span class="cm">     * (e.g. a compaction summary has none).</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">contentId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 
@@ -3518,6 +3518,20 @@ all behave like any other chat.</p>
 <span class="cm">     * May be omitted when state is &#39;finished&#39;.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">text?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Only when state is &#39;finished&#39;: present when the turn ended because</span>
+<span class="cm">     * of an error (a provider or network error, a context overflow…),</span>
+<span class="cm">     * which was also shown in the chat as text. Absent when it succeeded.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">error</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">        </span><span class="cm">/**</span>
+<span class="cm">         * The kind of error, e.g. &#39;network&#39;, &#39;overloaded&#39;, &#39;rate-limited&#39;,</span>
+<span class="cm">         * &#39;quota-exhausted&#39;, &#39;auth&#39;, &#39;context-overflow&#39;, &#39;unknown&#39;.</span>
+<span class="cm">         */</span>
+<span class="w">        </span><span class="kr">type</span><span class="nx">?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -3695,14 +3709,27 @@ all behave like any other chat.</p>
 <span class="w">    </span><span class="nx">sessionTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * The cost of the last sent message summing input + output tokens.</span>
+<span class="cm">     * Output tokens per second of the last model response, rounded to an</span>
+<span class="cm">     * integer. Measured from the first generated token to the end of the</span>
+<span class="cm">     * response. Includes reasoning tokens when the provider counts them as</span>
+<span class="cm">     * output and server-side tool waits such as web search. Excludes client</span>
+<span class="cm">     * tool execution and approval waits. Absent for non-streaming requests or</span>
+<span class="cm">     * when usage or timing is unknown.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">messageOutputTps?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The cost of the last sent message summing input + output tokens, in</span>
+<span class="cm">     * USD with 2 decimals, or 2 significant digits below one cent (e.g.</span>
+<span class="cm">     * `0.0012`).</span>
 <span class="cm">     * Absent when the model has no pricing or the chat uses a subscription</span>
 <span class="cm">     * login (see `quota`).</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">lastMessageCost?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span>
 
 <span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * The cost of the whole chat session so far.</span>
+<span class="cm">     * The cost of the whole chat session so far, formatted like</span>
+<span class="cm">     * `lastMessageCost`.</span>
 <span class="cm">     * Absent when the model has no pricing or the chat uses a subscription</span>
 <span class="cm">     * login (see `quota`).</span>
 <span class="cm">     */</span>
@@ -3880,7 +3907,10 @@ all behave like any other chat.</p>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Tool call that server is running to report to LLM later, sent once per id.</span>
+<span class="cm"> * Tool call that server is running to report to LLM later.</span>
+<span class="cm"> * First sent when the call starts; may be sent again for the same id while it</span>
+<span class="cm"> * runs (e.g. with updated `progress`, or subagent step `details`), so clients</span>
+<span class="cm"> * should update the existing tool call rather than add a new one.</span>
 <span class="cm"> */</span>
 <span class="kd">interface</span><span class="w"> </span><span class="nx">ChatToolCallRunningContent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;toolCallRunning&#39;</span><span class="p">;</span>
@@ -3918,6 +3948,32 @@ all behave like any other chat.</p>
 <span class="cm">     * Clients may use this to present different UX for this tool call.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">details?</span><span class="o">:</span><span class="w"> </span><span class="kt">ToolCallDetails</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Latest progress reported by the tool while running, mirroring MCP&#39;s</span>
+<span class="cm">     * `notifications/progress`. Sent at most about once per second per call.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">progress?</span><span class="o">:</span><span class="w"> </span><span class="kt">ToolCallProgress</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Progress of a running tool call, mirroring MCP&#39;s progress notification params.</span>
+<span class="cm"> */</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ToolCallProgress</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The progress so far; increases with each report, even if `total` is unknown.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">progress</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Total progress required, if known.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">total?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Description of the current progress.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">message?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/**</span>
@@ -4016,10 +4072,14 @@ all behave like any other chat.</p>
 
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * The reason why this tool call was rejected.</span>
+<span class="cm">     * &#39;hookStopped&#39;: a preToolCall hook stopped the turn (continue:false).</span>
 <span class="cm">     * &#39;interrupted&#39;: the LLM response streaming this tool call failed</span>
 <span class="cm">     * (e.g. connection dropped), so it will never run.</span>
+<span class="cm">     * &#39;invalidArguments&#39;: the LLM sent arguments that are not valid JSON;</span>
+<span class="cm">     * it gets the error as the result of the call and may send it again.</span>
+<span class="cm">     * &#39;user&#39;: no specific reason is known.</span>
 <span class="cm">     */</span>
-<span class="w">    </span><span class="nx">reason</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;userChoiceDeny&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;userConfigDeny&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;hookRejected&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;userPromptStop&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;userStop&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;user&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;interrupted&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">reason</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;userChoiceDeny&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;userConfigDeny&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;hookRejected&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;hookStopped&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;userPromptStop&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;userStop&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;user&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;interrupted&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;invalidArguments&#39;</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * Summary text to present about this tool call, </span>
@@ -4483,7 +4543,7 @@ the server compacts the chat with those instructions (as a manual compaction) an
 the running task, instead of injecting the command text into the conversation.</p>
 <p>Other native commands that do not affect the running turn (<code>/sync-system-prompt</code>, <code>/costs</code>,
 <code>/context</code>, <code>/chats</code>, <code>/skills</code>, <code>/rules</code>, <code>/subagents</code>, <code>/plugins</code>, <code>/hooks</code>, <code>/prompt-show</code>,
-<code>/repo-map-show</code>, <code>/doctor</code>, <code>/config</code>, <code>/remote</code>, <code>/debug-chat</code>, <code>/export</code>, <code>/approvals</code>,
+<code>/doctor</code>, <code>/config</code>, <code>/remote</code>, <code>/debug-chat</code>, <code>/export</code>, <code>/approvals</code>,
 <code>/forget-approvals</code>) are also queued and
 executed at the turn boundary: their output is shown and the task resumes. Native commands that
 would change the chat or start another prompt (<code>/model</code>, <code>/agent</code>, <code>/fork</code>, <code>/resume</code>,
@@ -4524,10 +4584,12 @@ the server silently does nothing.</p>
 </code></pre></div>
 <h3 id="chat-rollback">Chat rollback (↩)<a class="headerlink" href="#chat-rollback" title="Permanent link">#</a></h3>
 <p>A client request to rollback chat messages to before a specific user sent message using <code>contentId</code>.
-Clients should show an option close to user sent messages in chat to rollback, calling this method.
+Clients should show an option close to user sent messages in chat to rollback, calling this method, only for
+messages carrying a <code>contentId</code>: some user messages, like a compaction summary, have none.
 Server will then remove the messages from its memory after that contentId and produce <code>chat/cleared</code> followed 
 with <code>chat/contentReceived</code> with the kept messages. Clients with the <code>incrementalUpdates</code> capability receive
-a single <code>chat/truncated</code> instead.</p>
+a single <code>chat/truncated</code> instead. When the chat is unknown or <code>contentId</code> is missing or matches no message,
+the server returns an error without changing the history or any file.</p>
 <p><em>Request:</em> </p>
 <ul>
 <li>method: <code>chat/rollback</code></li>
@@ -4540,7 +4602,8 @@ a single <code>chat/truncated</code> instead.</p>
 <span class="w">    </span><span class="nx">chatId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * The message content id.</span>
+<span class="cm">     * The contentId of the message to roll back to: it and every later</span>
+<span class="cm">     * message are removed.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">contentId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 
@@ -4553,7 +4616,13 @@ a single <code>chat/truncated</code> instead.</p>
 <span class="kr">type</span><span class="w"> </span><span class="nx">ChatRollbackInclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;messages&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;tools&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p><em>Response:</em></p>
-<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatRollbackResponse</span><span class="w"> </span><span class="p">{}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ChatRollbackResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Present when nothing was rolled back: the chat is unknown, `contentId`</span>
+<span class="cm">     * is missing or blank (`invalid_request`) or matches no message of the chat.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">error</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;chat_not_found&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;invalid_request&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;content_not_found&#39;</span><span class="p">;</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
 </code></pre></div>
 <h3 id="chat-clear">Chat clear (↩)<a class="headerlink" href="#chat-clear" title="Permanent link">#</a></h3>
 <p>A client request to clear specific aspects of an existing chat while keeping the chat entity intact.
@@ -4842,7 +4911,8 @@ Server will persist the change, broadcast to all connected clients via <code>cha
 <span class="w">    </span><span class="cm">/**</span>
 <span class="cm">     * When true, enables trust mode for this chat — tool calls that would</span>
 <span class="cm">     * normally require manual approval are auto-accepted. Does not override deny rules.</span>
-<span class="cm">     * Changes apply immediately to subsequent tool calls in the active prompt.</span>
+<span class="cm">     * Changes apply immediately to subsequent tool calls in the active prompt,</span>
+<span class="cm">     * including those of the subagents running in this chat.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">trust?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
 <span class="p">}</span>
@@ -5633,7 +5703,7 @@ their status and available tools and actions.</p>
 <li>method: <code>tool/serverUpdated</code></li>
 <li>params: <code>ToolServerUpdatedParams</code> defined as follows:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kr">type</span><span class="w"> </span><span class="nx">ToolServerUpdatedParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">EcaServerUpdatedParams</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">MCPServerUpdatedParams</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kr">type</span><span class="w"> </span><span class="nx">ToolServerUpdatedParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">EcaServerUpdatedParams</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">ModuleServerUpdatedParams</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">MCPServerUpdatedParams</span><span class="p">;</span>
 
 <span class="kd">interface</span><span class="w"> </span><span class="nx">EcaServerUpdatedParams</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;native&#39;</span><span class="p">;</span>
@@ -5652,6 +5722,40 @@ their status and available tools and actions.</p>
 <span class="cm">     * Note: `spawn_agent` and `task` are excluded from subagent tool sets.</span>
 <span class="cm">     * `spawn_agent` is excluded to prevent nesting, and `task` because</span>
 <span class="cm">     * task list state is chat-local and should be managed by the parent agent.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">tools</span><span class="o">:</span><span class="w"> </span><span class="kt">ServerTool</span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The tools of an external module (a user&#39;s or a plugin&#39;s ECA module): its</span>
+<span class="cm"> * own, on a server named by its prefix, or one of its tool servers&#39;. Its</span>
+<span class="cm"> * tools are named `&lt;name&gt;__&lt;tool&gt;`, like MCP tools. Sent again when modules</span>
+<span class="cm"> * load, reload, are enabled or disabled, or add or remove tools; when a</span>
+<span class="cm"> * module has no tools anymore, or no longer has a tool server,</span>
+<span class="cm"> * `tool/serverRemoved` drops that server.</span>
+<span class="cm"> */</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ModuleServerUpdatedParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;module&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The module&#39;s tool prefix, e.g. `jira` for `jira__issue`, or the name of</span>
+<span class="cm">     * one of its tool servers.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The module id, e.g. `acme/jira`.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">module</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * `running` for the module&#39;s own tools; a tool server&#39;s status may be</span>
+<span class="cm">     * any of an MCP server&#39;s.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * The module&#39;s tools.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">tools</span><span class="o">:</span><span class="w"> </span><span class="kt">ServerTool</span><span class="p">[];</span>
 <span class="p">}</span>
@@ -5789,8 +5893,9 @@ their status and available tools and actions.</p>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="tool-server-removed">Tool server removed (←)<a class="headerlink" href="#tool-server-removed" title="Permanent link">#</a></h3>
-<p>A server notification that an MCP server has been removed (via <code>mcp/removeServer</code>).
-Clients should drop the corresponding entry from any cached server list / UI.</p>
+<p>A server notification that an MCP server has been removed (via <code>mcp/removeServer</code>), or that
+an external module's tool server is gone (the module was removed or disabled, or has no tools
+anymore). Clients should drop the corresponding entry from any cached server list / UI.</p>
 <p><em>Notification:</em></p>
 <ul>
 <li>method: <code>tool/serverRemoved</code></li>
@@ -5798,7 +5903,7 @@ Clients should drop the corresponding entry from any cached server list / UI.</p
 </ul>
 <div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">ToolServerRemovedParams</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="cm">/**</span>
-<span class="cm">     * The MCP server name that was removed.</span>
+<span class="cm">     * The name of the MCP server, or of the module tool server, that was removed.</span>
 <span class="cm">     */</span>
 <span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
 <span class="p">}</span>
@@ -6438,7 +6543,7 @@ Clients can track all tasks to derive aggregate initialization progress.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 23, 2026 14:34:27 UTC">October 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 00:44:45 UTC">November 18, 2026</span>
   </span>
 
     
@@ -6481,10 +6586,10 @@ Clients can track all tasks to derive aggregate initialization progress.</p>
     </a>
     
     
-    <a href="../troubleshooting/" class="md-footer__link md-footer__link--next">
+    <a href="../read-chat/" class="md-footer__link md-footer__link--next">
       <div class="md-footer__title">
         <span class="md-footer__direction">Next</span>
-        <span class="md-ellipsis">Troubleshooting</span>
+        <span class="md-ellipsis">read-chat CLI</span>
       </div>
       <div class="md-footer__button md-icon">
         
@@ -6553,11 +6658,17 @@ Clients can track all tasks to derive aggregate initialization progress.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.follow", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
+        <script src="../js/toc-hash.js"></script>
+      
     
+  
+  
+
   </body>
 </html>

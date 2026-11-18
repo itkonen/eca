@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ECA is a free, open-source AI pair programming tool that connects any LLM to any editor via a standardized protocol. Works with VS Code, Emacs, Neovim, IntelliJ, Desktop and supports OpenAI, Anthropic, Copilot, Ollama and more.">
+        <meta name="description" content="ECA is a free, open-source AI pair programming tool that connects any LLM to any editor via a standardized protocol. Works with VS Code, Emacs, Neovim, IntelliJ, Desktop, CLI and supports OpenAI, Anthropic, Copilot, Ollama and more.">
       
       
       
@@ -43,7 +43,7 @@
       
     
     
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=fallback">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=fallback">
     
       <link rel="stylesheet" href="../stylesheets/layout.css">
     
@@ -75,7 +75,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Changelog - ECA - Editor Code Assistant" />
-  <meta property="og:description" content="ECA is a free, open-source AI pair programming tool that connects any LLM to any editor via a standardized protocol. Works with VS Code, Emacs, Neovim, IntelliJ, Desktop and supports OpenAI, Anthropic, Copilot, Ollama and more." />
+  <meta property="og:description" content="ECA is a free, open-source AI pair programming tool that connects any LLM to any editor via a standardized protocol. Works with VS Code, Emacs, Neovim, IntelliJ, Desktop, CLI and supports OpenAI, Anthropic, Copilot, Ollama and more." />
   <meta property="og:url" content="https://eca.dev/CHANGELOG/" />
   <meta property="og:image" content="https://eca.dev/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -85,7 +85,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Changelog - ECA - Editor Code Assistant" />
-  <meta name="twitter:description" content="ECA is a free, open-source AI pair programming tool that connects any LLM to any editor via a standardized protocol. Works with VS Code, Emacs, Neovim, IntelliJ, Desktop and supports OpenAI, Anthropic, Copilot, Ollama and more." />
+  <meta name="twitter:description" content="ECA is a free, open-source AI pair programming tool that connects any LLM to any editor via a standardized protocol. Works with VS Code, Emacs, Neovim, IntelliJ, Desktop, CLI and supports OpenAI, Anthropic, Copilot, Ollama and more." />
   <meta name="twitter:image" content="https://eca.dev/images/og-image.png" />
 
   </head>
@@ -217,38 +217,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
-          
-  
-  
-  Home
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
-  
-  
     
-    
-      <li class="md-tabs__item">
-        <a href="../features/" class="md-tabs__link">
-          
   
-  
-  Features
+  Home
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -264,27 +243,7 @@
           
   
   
-  Install
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../config/introduction/" class="md-tabs__link">
-          
-  
-  
-  Configuration
+  Documentation
 
         </a>
       </li>
@@ -298,7 +257,45 @@
   
   
     <li class="md-tabs__item">
-      <a href="../protocol/" class="md-tabs__link">
+      <a href="/install/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Install
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="/config/introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Configuration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="/protocol/" class="md-tabs__link">
         
   
   
@@ -317,7 +314,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../troubleshooting/" class="md-tabs__link">
+      <a href="/troubleshooting/" class="md-tabs__link">
         
   
   
@@ -418,27 +415,9 @@
   
   
   
-    
-    
-    
-    
-      
-      
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
@@ -447,45 +426,10 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
-            <span class="md-nav__icon md-icon"></span>
-            Home
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ECA - Free Open Source AI Pair Programming in Any Editor
-    
-  </span>
-  
-
       </a>
     </li>
   
 
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
     
       
       
@@ -498,8 +442,6 @@
     
     
       
-      
-        
       
     
     
@@ -507,9 +449,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -517,7 +457,7 @@
   
   
   <span class="md-ellipsis">
-    Features
+    Documentation
     
   </span>
   
@@ -528,9 +468,32 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Features
+            Documentation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -584,43 +547,11 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../read-chat/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Read Chat CLI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
     
       
-      
-        
       
     
     
@@ -628,87 +559,10 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Install
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Install
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Install ECA
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   
@@ -721,8 +575,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Configuration
           </label>
@@ -741,6 +595,29 @@
   
   <span class="md-ellipsis">
     Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modules
     
   </span>
   
@@ -1171,6 +1048,83 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ECA Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    read-chat CLI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -1179,7 +1133,51 @@
   
   
     <li class="md-nav__item">
-      <a href="../protocol/" class="md-nav__link">
+      <a href="/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/config/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/protocol/" class="md-nav__link">
         
   
   
@@ -1201,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="/troubleshooting/" class="md-nav__link">
         
   
   
@@ -1273,7 +1271,9 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On This Page">
   
   
   
@@ -1282,7 +1282,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On This Page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1293,20 +1293,122 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Unreleased">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docs-site" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01711" class="md-nav__link">
     <span class="md-ellipsis">
-      Docs site
+      0.171.1
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#01710" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.171.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01706" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.6
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01705" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01704" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01703" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01702" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01701" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01700" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.170.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01691" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.169.1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01690" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.169.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01680" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.168.0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01670" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.167.0
+    </span>
+  </a>
   
 </li>
       
@@ -5120,35 +5222,111 @@
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">#</a></h1>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">#</a></h2>
-<h3 id="docs-site">Docs site<a class="headerlink" href="#docs-site" title="Permanent link">#</a></h3>
 <ul>
-<li>Added: <code>docs/evolution</code>. This holds internal planning docs and visual changelogs related to developing the docs site. It is excluded from the published site with <code>exclude_docs</code></li>
-<li>Added: Notes on the Configuration sidebar structure in <code>docs/evolution/planning/sidebar-navigation.md</code></li>
-<li>Changed: Inter typeface as the site font, loaded through <code>theme.font</code>, plus Inter typeface <code>600</code> from Google Fonts for headings</li>
-<li>Changed: Article column capped at <code>700px</code>, body text <code>0.85rem</code> (<code>17px</code>), line height <code>1.7</code></li>
-<li>Changed: Headings in <code>rem</code> so they no longer scale with body text: <code>h1</code> <code>36px</code>, <code>h2</code> <code>24px</code>, <code>h3</code> <code>20px</code>, all weight <code>600</code>, color <code>#333</code>, letter spacing <code>-0.025em</code></li>
-<li>Changed: Body links use the text color at weight <code>600</code> with a gray underline set <code>0.25em</code> below the text, darkening on hover</li>
-<li>Changed: Hover and focus accent is black instead of accent (teal)</li>
-<li>Changed: Content tab labels keep their accent (teal) through a dedicated <code>--eca-accent (teal)</code> token</li>
-<li>Changed: Items indented <code>1.3em</code> with a faint left rule that lines up with the section heading</li>
-<li>Changed: About 20% more vertical space per item</li>
-<li>Changed: Active page bold with a dark segment on the rule, instead of accent (teal) text</li>
-<li>Changed: Top-level links weight <code>500</code>, nested links weight <code>400</code> at opacity <code>0.8</code></li>
-<li>Changed: Section heading indented <code>0.9em</code>, dark gray instead of accent (teal), hover is black</li>
-<li>Changed: All emoji replaced with Lucide icons (<code>lucide-static</code> 1.57.0, ISC license) in <code>docs/overrides/.icons/lucide</code>, drawn at <code>stroke-width: 1.5</code></li>
-<li>Added: Citation and link to Lucide in the footer.</li>
-<li>Changed: "Free &amp; Open Source" uses the Lucide <code>git-fork</code> icon instead of the oversized green OSI logo</li>
-<li>Changed: Top three feature cards use the same icon-left, two-column layout as the cards below</li>
-<li>Changed: Card text one step tighter: line height <code>1.45</code> and <code>1.4</code></li>
-<li>Changed: Homepage accent tokens (<code>--eca-brand-*</code>) neutral (grays and black) instead of accent (teal)</li>
-<li>Changed: Intro, question, tabs, "Install the ECA server manually" section and "Something not working?" section share one <code>60rem</code> left edge</li>
-<li>Changed: "Auto install" callout full width with a Lucide <code>info</code> icon</li>
-<li>Changed: "Where do you want to use ECA?" matches the doc page <code>h1</code></li>
-<li>Changed: Plugin copy split into two paragraphs, dash replaced with a period</li>
-<li>Changed: "Install the ECA server manually" section no longer a hidden toggle, always shown</li>
-<li>Changed: Editor tabs and manual install tabs share one underline style with accent (teal) labels</li>
-<li>Changed: "Something not working?" section is a bulleted list with the doc page link style</li>
-<li>Changed: Emoji arrows replaced with plain Unicode text arrows in 61 headings: → ← ↩ ↪</li>
+<li>Add modular ECA: its features are now modules, which you can list, enable or disable, and extend with your own modules. #699</li>
+<li><code>/modules</code> lists them and enables or disables one for the session; <code>modules.&lt;id&gt;.enabled</code> does it in the config.</li>
+<li>Write your own in Clojure, run with SCI, loaded from <code>~/.config/eca/modules/</code>, <code>.eca/modules/</code>, plugins or the config.</li>
+<li>A module adds tools, tool servers, commands, protocol methods, prompt sections, skills, contexts, providers, LLM APIs and event handlers, and calls ECA through <code>eca.api</code>.</li>
+<li>Optional modules, off by default: <code>eca/repl</code> (<code>--repl</code>), <code>eca/remote</code> and <code>eca/otel</code>; <code>remote.enabled</code> and <code>otlp</code> still enable these two.</li>
+<li>New <code>eca-manage</code> skill, to change ECA itself, from its config to modules, following the docs at eca.dev.</li>
+<li>Add <code>toolCall.approval.insideWorkspace</code>: folders outside the workspace that file and shell tools treat as inside it, so your approval rules decide for them.</li>
+<li>Remove the <code>repoMap</code> context and <code>/repo-map-show</code>, deprecated since 0.59.0: <code>eca__directory_tree</code> replaces them.</li>
+<li>Fix a compaction blocked by a preCompact hook in the middle of a turn sending the user's message to the model again.</li>
+<li>Fix <code>initialize</code> failing when <code>initializationOptions</code> has a key with a slash, e.g. a module id in <code>modules</code>.</li>
+<li>Add AWS Bedrock to <code>/login</code> and to the providers list; it only had a login form.</li>
+<li>Fix <code>/login azure</code> saving no URL, and the Azure login form saving the Chat Completions API instead of the Responses API.</li>
+<li>Tell the code agent to run independent tool calls in parallel and dependent or potentially conflicting calls sequentially.</li>
+</ul>
+<h2 id="01711">0.171.1<a class="headerlink" href="#01711" title="Permanent link">#</a></h2>
+<ul>
+<li>Add <code>eca_version</code> to every hook's stdin payload, so hooks and plugins can adapt to the running ECA version. #697</li>
+<li>Fix tool calls with invalid JSON arguments ending the turn silently or as a connection error: the LLM now gets the error as the call's result and can retry.</li>
+<li>Fix <code>toolCallRejected</code> sending <code>reason</code> <code>user</code> for most rejections, and kebab-case for the rest: it now follows the protocol, with new <code>hookStopped</code> and <code>invalidArguments</code>.</li>
+</ul>
+<h2 id="01710">0.171.0<a class="headerlink" href="#01710" title="Permanent link">#</a></h2>
+<ul>
+<li>Send the chat id as <code>_meta.sessionId</code> on MCP <code>tools/call</code> requests, so MCP servers can keep per-chat state. #696</li>
+<li>Fix trust toggled while a subagent runs not applying to it, e.g. turning trust off left the subagent auto-accepting tool calls. #504</li>
+<li>Improve the <code>task</code> tool: plain integer <code>id</code> so servers rejecting type unions (e.g. Apple <code>fm serve</code>) work, and rules no longer make models redo work after a missed <code>start</code>. #693</li>
+</ul>
+<h2 id="01706">0.170.6<a class="headerlink" href="#01706" title="Permanent link">#</a></h2>
+<ul>
+<li>Remove the <code>task</code> tool's reminder to re-check the whole request when the last task is done; tasks are already verified on <code>complete</code>.</li>
+<li>Simplify the <code>code</code> agent's request-checking instructions: no literal reading of loose instructions, no final sweep, no handling of hypothetical edge cases.</li>
+</ul>
+<h2 id="01705">0.170.5<a class="headerlink" href="#01705" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix releases since 0.170.2 shipping no binaries: build macOS arm64 on <code>macos-15</code> as GitHub retired <code>macos-14</code>, and target macOS 14+ for both macOS binaries. #691</li>
+</ul>
+<h2 id="01704">0.170.4<a class="headerlink" href="#01704" title="Permanent link">#</a></h2>
+<ul>
+<li>Make the <code>code</code> agent implement stated behavior literally and check each requirement, including failure paths, before finishing, instead of stopping once existing tests pass.</li>
+<li>Remind the model to check the request requirement by requirement when it completes the last task of the <code>task</code> tool.</li>
+<li>Tell models that <code>shell_command</code> background jobs stop when ECA exits, so a service meant to keep running is started detached instead.</li>
+</ul>
+<h2 id="01703">0.170.3<a class="headerlink" href="#01703" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix models calling the <code>git</code> tool with a bare subcommand like <code>status</code>: its <code>command</code> parameter now asks for the full <code>git</code>/<code>gh</code> command line, and the error says so.</li>
+<li>Fix provider errors like 504 or OpenRouter's 520 ending the turn instead of being retried: any 5xx is now retried, as the OpenAI and Anthropic SDKs do.</li>
+<li>Fix costs below one cent showing as <code>0.00</code> in usage and <code>/costs</code>: they now keep 2 significant digits (e.g. <code>0.0012</code>), larger costs still show cents.</li>
+</ul>
+<h2 id="01702">0.170.2<a class="headerlink" href="#01702" title="Permanent link">#</a></h2>
+<ul>
+<li>Support the <code>ECA_MODELS_DEV_URL</code> env var to fetch the models.dev catalog from a mirror instead.</li>
+<li>Fix <code>prompts.tools</code> overrides of <code>spawn_agent</code> and <code>fetch_rule</code> dropping their available agents and path-scoped rules lists; they're now appended after the override. #671</li>
+<li>Fix Ollama models stopping after announcing a tool call in long chats: send past tool calls as <code>tool_calls</code> and merge each response into a single assistant message. #672</li>
+<li>Fix <code>network</code> and <code>connectTimeoutSeconds</code> settings in <code>extraConfigs</code> files being ignored: absolute and <code>~</code> paths are now read at startup. #688</li>
+<li>Fix the context usage breakdown counting <code>@</code> contexts, AGENTS.md and later system prompt sections as Skills; they now count as System prompt and AGENTS.md. #689</li>
+<li>Fix context-area files and repoMap freezing after the first turn: send them in the user message, in full once, then a one-line notice on change, nothing once removed. #683</li>
+<li>Fix Ollama dropping all user message blocks after the first one, like <code>@</code> contexts, context-area files and cursor.</li>
+</ul>
+<h2 id="01701">0.170.1<a class="headerlink" href="#01701" title="Permanent link">#</a></h2>
+<ul>
+<li>Serialize concurrent edits to the same file and preserve the latest pre-edit content for rollback. #621</li>
+<li>Fix auto-compaction running only once per turn: long (e.g. steered) turns now compact again when the context refills, up to <code>autoCompactMaxPerTurn</code> (default 3).</li>
+<li>Fix <code>chat/rollback</code> with a null <code>contentId</code> truncating history at the first message without one and reverting later file changes; invalid targets now return an error. #669</li>
+</ul>
+<h2 id="01700">0.170.0<a class="headerlink" href="#01700" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix compaction reusing an old summary when the model returns text without calling <code>compact_chat</code>; report failure instead. #629</li>
+<li>Preserve hosted web search and image generation in Codex parallel requests without changing Lite routing. #628</li>
+<li>Fix auto-approved tool calls waiting on an earlier call's manual approval; they now start right away while approvals are still asked one at a time.</li>
+<li>Fix calls to the same MCP server running one at a time across all chats; only stdio writes are serialized now.</li>
+<li>Support MCP progress notifications: each progress report resets the tool-call timeout, and timed-out calls are cancelled on the server.</li>
+<li>Forward MCP tool progress to clients: <code>toolCallRunning</code> is re-sent with a <code>progress</code> field (<code>progress</code>, <code>total</code>, <code>message</code>), at most once per second per call.</li>
+</ul>
+<h2 id="01691">0.169.1<a class="headerlink" href="#01691" title="Permanent link">#</a></h2>
+<ul>
+<li>Add <code>eca-cli</code> as an official client in docs and landing page.</li>
+<li>Fix landing page hero clipping the editor tabs and demo on tablet and small laptop widths.</li>
+<li>Enable built-in web search for OpenAI GPT-6.1 Sol, GPT-6 Sol, and GPT-6 Luna.</li>
+<li>Fix no models discovered for providers whose models.dev API URL has placeholders, like Cloudflare Workers AI's account id. #662</li>
+<li>Fix Anthropic API-key requests failing with "credit balance is too low": send the "You are Claude Code" system block only with OAuth logins. #666</li>
+<li>Docs: Persistent Documentation sidenav</li>
+<li>Fix Mistral reasoning models failing after the first answer: send past reasoning back as <code>thinking</code> chunks, not <code>reasoning_content</code>. #674</li>
+<li>Fix missing chat titles and inline completions with Mistral reasoning models, like Mistral Large 4, which reply with thinking + text chunks.</li>
+<li>Fix Mistral rejecting a chat that switched from a Gemini model: do not send Gemini thought signatures to Mistral.</li>
+</ul>
+<h2 id="01690">0.169.0<a class="headerlink" href="#01690" title="Permanent link">#</a></h2>
+<ul>
+<li>The <code>finished</code> progress of a turn that failed (provider or network error, context overflow…) carries an <code>error</code> with its message and type, so clients can tell it from a successful turn (e.g. a headless run's exit code).</li>
+<li>A chat renamed with <code>chat/update</code> while its title is being generated keeps the new title.</li>
+<li>Official support for <code>eca-cli</code> as an official client.</li>
+<li>Docs: Fix landing page hero clipping the editor tabs and demo on tablet and small laptop widths.</li>
+<li>Docs: Add logo wall and improvements in home page. #676</li>
+</ul>
+<h2 id="01680">0.168.0<a class="headerlink" href="#01680" title="Permanent link">#</a></h2>
+<ul>
+<li>Discover global skills from <code>~/.agents/skills</code> and keep one skill per name, with workspace skills overriding global ones.</li>
+<li>Fix compaction, auto-continue and subagent LLM calls in long prompts sending a <code>${cmd:...}</code> provider key resolved at prompt start, failing with 401 once the token expires. #634</li>
+<li>Stop re-syncing models, provider catalogs and quotas whenever a <code>${cmd:...}</code> provider key prints a new token; only setting or clearing a key re-syncs them.</li>
+<li>Fix Anthropic chats hanging forever when the model stalls mid-response but the API keeps sending pings: pings no longer reset <code>streamIdleTimeoutSeconds</code>, so recovery kicks in.</li>
+</ul>
+<h2 id="01670">0.167.0<a class="headerlink" href="#01670" title="Permanent link">#</a></h2>
+<ul>
+<li>Show output tokens per second (TPS) in the chat usage payload for streamed model responses.</li>
+<li>Fix ChatGPT subscription quota showing an empty <code>secondary</code> window with no value for plans without a 5h limit.</li>
+<li>General improvements to docs webpage. #663</li>
 </ul>
 <h2 id="01660">0.166.0<a class="headerlink" href="#01660" title="Permanent link">#</a></h2>
 <ul>
@@ -7400,7 +7578,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 24, 2026 07:57:23 UTC">October 24, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 04:40:21 UTC">November 18, 2026</span>
   </span>
 
     
@@ -7493,11 +7671,17 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.expand", "navigation.sections", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.follow", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
+        <script src="../js/toc-hash.js"></script>
+      
     
+  
+  
+
   </body>
 </html>

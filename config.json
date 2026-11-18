@@ -2,10 +2,10 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://eca.dev/config.json",
   "title": "ECA Configuration",
-  "description": "Configuration schema for ECA (Editor Code Assistant). See https://eca.dev/config/introduction for full documentation.",
-  "markdownDescription": "Configuration schema for ECA (Editor Code Assistant). See https://eca.dev/config/introduction for full documentation.",
+  "description": "Configuration schema for ECA (Editor Code Assistant). See https://eca.dev/config/introduction for full documentation. Other root keys may belong to modules; ECA warns about unknown ones at startup and in /doctor.",
+  "markdownDescription": "Configuration schema for ECA (Editor Code Assistant). See https://eca.dev/config/introduction for full documentation. Other root keys may belong to [modules](https://eca.dev/config/modules); ECA warns about unknown ones at startup and in `/doctor`.",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "allowComments": true,
   "properties": {
     "$schema": {
@@ -191,8 +191,8 @@
     },
     "streamIdleTimeoutSeconds": {
       "type": "integer",
-      "description": "Timeout in seconds to wait without receiving data before considering a LLM stream stalled.",
-      "markdownDescription": "Timeout in seconds to wait without receiving data before considering a LLM stream stalled.",
+      "description": "Timeout in seconds to wait without receiving data before considering a LLM stream stalled. Keepalive pings don't count as data.",
+      "markdownDescription": "Timeout in seconds to wait without receiving data before considering a LLM stream stalled. Keepalive pings don't count as data.",
       "default": 300
     },
     "connectTimeoutSeconds": {
@@ -231,6 +231,13 @@
       "markdownDescription": "Remaining context tokens (model context limit minus used tokens) at or below which auto-compact triggers. Takes precedence over `autoCompactPercentage`, which is only used as fallback when this value is not smaller than the model context limit. Useful when switching between models with very different context sizes.",
       "minimum": 1
     },
+    "autoCompactMaxPerTurn": {
+      "type": "integer",
+      "description": "Maximum number of auto-compactions in a single turn. Each compaction sends the whole context to the LLM, so this stops a turn that keeps refilling the context from compacting without end. When reached, a context overflow is shown as an error instead.",
+      "markdownDescription": "Maximum number of auto-compactions in a single turn. Each compaction sends the whole context to the LLM, so this stops a turn that keeps refilling the context from compacting without end. When reached, a context overflow is shown as an error instead.",
+      "minimum": 1,
+      "default": 3
+    },
     "includeParentAgentsFiles": {
       "type": "boolean",
       "description": "When true, also include AGENTS.md files from each workspace folder's parent directories, ordered outermost parent first, then the workspace's own AGENTS.md.",
@@ -256,26 +263,6 @@
                   "gitignore"
                 ]
               }
-            }
-          }
-        },
-        "repoMap": {
-          "type": "object",
-          "description": "Repository map configuration for context building.",
-          "markdownDescription": "Repository map configuration for context building.",
-          "additionalProperties": false,
-          "properties": {
-            "maxTotalEntries": {
-              "type": "integer",
-              "description": "Maximum total entries in the repo map.",
-              "markdownDescription": "Maximum total entries in the repo map.",
-              "default": 800
-            },
-            "maxEntriesPerDir": {
-              "type": "integer",
-              "description": "Maximum entries per directory in the repo map.",
-              "markdownDescription": "Maximum entries per directory in the repo map.",
-              "default": 50
             }
           }
         }
@@ -332,8 +319,8 @@
     },
     "otlp": {
       "type": "object",
-      "description": "OpenTelemetry OTLP collector configuration. Keys follow otlp auto-configure settings.",
-      "markdownDescription": "OpenTelemetry OTLP collector configuration. Keys follow otlp auto-configure settings.",
+      "description": "OpenTelemetry OTLP collector configuration. Keys follow otlp auto-configure settings. Setting it turns on the eca/otel module.",
+      "markdownDescription": "OpenTelemetry OTLP collector configuration. Keys follow otlp auto-configure settings. Setting it turns on the `eca/otel` module.",
       "additionalProperties": {
         "type": "string"
       }
@@ -409,6 +396,43 @@
         }
       }
     },
+    "modules": {
+      "type": "object",
+      "description": "Per module id, e.g. 'eca/mcp' or 'acme/jira': turn a module on or off, load an external module from a file or folder, or change its priority. See https://eca.dev/config/modules",
+      "markdownDescription": "Per module id, e.g. `eca/mcp` or `acme/jira`: turn a module on or off, load an external module from a file or folder, or change its priority. See [Modules](https://eca.dev/config/modules).",
+      "examples": [
+        {
+          "eca/mcp": {
+            "enabled": false
+          },
+          "acme/jira": {
+            "source": "~/dev/eca-jira/jira.clj",
+            "priority": 10
+          }
+        }
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Turn the module on or off. Default: on, unless the module ships off. Disabling a module also disables the modules that require it.",
+            "markdownDescription": "Turn the module on or off. Default: on, unless the module ships off. Disabling a module also disables the modules that require it."
+          },
+          "source": {
+            "type": "string",
+            "description": "File or folder of an external module: a .clj file, or a folder with a module.clj. '~' expands; a relative path resolves against the first workspace root.",
+            "markdownDescription": "File or folder of an external module: a `.clj` file, or a folder with a `module.clj`. `~` expands; a relative path resolves against the first workspace root."
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Order of the module's event handlers, higher first. Default: 0 for external modules, -100 for built-in ones.",
+            "markdownDescription": "Order of the module's event handlers, higher first. Default: `0` for external modules, `-100` for built-in ones."
+          }
+        }
+      }
+    },
     "plugins": {
       "type": "object",
       "description": "Plugin system for loading external configuration from git repos or local paths. Each key except 'install' and 'installMode' is a named plugin source with a 'source' URL or path.",
@@ -475,8 +499,8 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "description": "Enables the remote HTTP server.",
-          "markdownDescription": "Enables the remote HTTP server."
+          "description": "Enables the remote HTTP server, turning on the eca/remote module.",
+          "markdownDescription": "Enables the remote HTTP server, turning on the `eca/remote` module."
         },
         "host": {
           "type": "string",
@@ -539,10 +563,32 @@
         }
       }
     },
+    "repl": {
+      "type": "object",
+      "description": "Where the eca/repl module's nREPL listens, a REPL on ECA's module runtime. The module is off by default: turn it on with modules.eca/repl.enabled, '/modules enable eca/repl' or 'eca server --repl'. See https://eca.dev/config/modules",
+      "markdownDescription": "Where the `eca/repl` module's nREPL listens, a REPL on ECA's module runtime. The module is off by default: turn it on with `modules.eca/repl.enabled`, `/modules enable eca/repl` or `eca server --repl`. See [Modules](https://eca.dev/config/modules#a-repl-on-eca).",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "A loopback address: nREPL has no authentication, so ECA refuses others.",
+          "markdownDescription": "A loopback address: nREPL has no authentication, so ECA refuses others."
+        },
+        "port": {
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 65535,
+          "description": "The port. 0 picks a free one.",
+          "markdownDescription": "The port. `0` picks a free one."
+        }
+      }
+    },
     "network": {
       "type": "object",
-      "description": "Network configuration for custom CA certificates and mTLS client certificates. Values support dynamic string interpolation (e.g. '${env:SSL_CERT_FILE}').",
-      "markdownDescription": "Network configuration for custom CA certificates and mTLS client certificates. Values support dynamic string interpolation (e.g. `${env:SSL_CERT_FILE}`).",
+      "description": "Network configuration for custom CA certificates and mTLS client certificates, read once at startup from the global config or ECA_CONFIG, plus the extraConfigs they list with absolute or ~ paths (not initializationOptions or project config). Values support dynamic string interpolation (e.g. '${env:SSL_CERT_FILE}').",
+      "markdownDescription": "Network configuration for custom CA certificates and mTLS client certificates, read once at startup from the global config or `ECA_CONFIG`, plus the `extraConfigs` they list with absolute or `~` paths (not `initializationOptions` or project config). Values support dynamic string interpolation (e.g. `${env:SSL_CERT_FILE}`).",
       "additionalProperties": false,
       "properties": {
         "caCertFile": {
@@ -1046,6 +1092,12 @@
           "markdownDescription": "Remaining context tokens at or below which auto-compact triggers for this agent. Takes precedence over `autoCompactPercentage`.",
           "minimum": 1
         },
+        "autoCompactMaxPerTurn": {
+          "type": "integer",
+          "description": "Maximum number of auto-compactions in a single turn for this agent.",
+          "markdownDescription": "Maximum number of auto-compactions in a single turn for this agent.",
+          "minimum": 1
+        },
         "toolCall": {
           "$ref": "#/definitions/toolCallConfig"
         },
@@ -1399,6 +1451,14 @@
           "additionalProperties": {
             "$ref": "#/definitions/approvalMatcher"
           }
+        },
+        "insideWorkspace": {
+          "type": "array",
+          "description": "Folders outside the workspace that filesystem tools and shell_command treat as inside it, so the approval rules decide for their paths: absolute paths or starting with ~. The lists of every config layer, of modules and, for an agent, its own add up.",
+          "markdownDescription": "Folders outside the workspace that filesystem tools and `shell_command` treat as inside it, so the approval rules decide for their paths: absolute paths or starting with `~`. The lists of every config layer, of modules and, for an agent, its own add up.",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
@@ -1559,8 +1619,8 @@
         },
         "tools": {
           "type": "object",
-          "description": "Custom descriptions for specific tools. Key is the tool name.",
-          "markdownDescription": "Custom descriptions for specific tools. Key is the tool name.",
+          "description": "Custom descriptions for specific tools. Key is the tool name. Runtime lists, like the available agents of eca__spawn_agent and the path-scoped rules of eca__fetch_rule, are still appended.",
+          "markdownDescription": "Custom descriptions for specific tools. Key is the tool name. Runtime lists, like the available agents of `eca__spawn_agent` and the path-scoped rules of `eca__fetch_rule`, are still appended.",
           "additionalProperties": {
             "type": "string"
           }
